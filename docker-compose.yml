@@ -1,0 +1,16 @@
+services:
+  ml-service:
+    build: ./ml
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./ml:/app
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
