@@ -1,7 +1,8 @@
 services:
   ml-service:
-    build: ./app
+    build: .
     ports:
       - "8001:8001"
-    volumes:
-      - ./app:/app
+    # używać tylko wtedy jak ktoś faktycznie korzysta z kontenera, a nie venv:
+    # volumes:
+    #   - ./app:/app
