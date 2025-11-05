@@ -8,11 +8,11 @@ class ProductProcessor:
     def __init__(self):
         self.product_to_id = {}
         self.id_to_product = {}
-        #self.category_to_id = {}
-        #self.id_to_category = {}
-        #self.product_categories = {}  # Mapowanie product_id -> category_ids
+        self.category_to_id = {}
+        self.id_to_category = {}
+        self.product_categories = {}  # Mapowanie product_id -> category_ids
         self.next_product_id = 1
-        #self.next_category_id = 1
+        self.next_category_id = 1
     def process_data(self, users_data):
         """Przetwarza pojedynczy produkt i zwraca jego ID"""
         for i in range(len(users_data)):
@@ -26,12 +26,20 @@ class ProductProcessor:
                     self.id_to_product[self.next_product_id] = users_data[i]['products'][j]
                     self.next_product_id += 1
                 users_data[i]['products'][j] = self.product_to_id[users_data[i]['products'][j]]
+            for j in range(len(users_data[i]['categories'])):
+                if users_data[i]['categories'][j] not in self.category_to_id:
+                    self.category_to_id[users_data[i]['categories'][j]] = self.next_category_id
+                    self.id_to_category[self.next_category_id] = users_data[i]['categories'][j]
+                    self.next_category_id += 1
+                users_data[i]['categories'][j] = self.category_to_id[users_data[i]['categories'][j]]
+        
+        
         return users_data
     def get_vocab_size(self):
         return len(self.product_to_id)
     
-    #def get_num_categories(self):
-     #   return len(self.category_to_id)
+    def get_num_categories(self):
+        return len(self.category_to_id)
 
 
 
