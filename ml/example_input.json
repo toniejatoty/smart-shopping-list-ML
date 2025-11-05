@@ -1,0 +1,718 @@
+{
+  "users_data": [
+    {
+      "user_id": 1,
+      "products": [
+        "mleko",
+        "chleb",
+        "masło",
+        "jogurt_owocowy",
+        "pampersy",
+        "banany"
+      ],
+      "age": 25,
+      "gender": "K",
+      "timestamp": "2025-10-22T13:17:42.926123"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "jajka",
+        "banany",
+        "pampersy",
+        "chusteczki_nawilżane",
+        "mydło"
+      ],
+      "age": 25,
+      "gender": "K",
+      "timestamp": "2025-10-24T13:17:42.926123"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "mleko",
+        "chleb",
+        "masło",
+        "jogurt_owocowy",
+        "sok_jabłkowy",
+        "biszkopty"
+      ],
+      "age": 25,
+      "gender": "K",
+      "timestamp": "2025-10-26T13:17:42.926123"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "ser_żółty",
+        "wędlina_drobiowa",
+        "pomidory",
+        "ogórki",
+        "jabłka",
+        "herbatniki"
+      ],
+      "age": 25,
+      "gender": "K",
+      "timestamp": "2025-10-29T13:17:42.926123"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "mleko",
+        "płatki_śniadaniowe",
+        "kakao",
+        "jogurt_naturalny",
+        "gruszki",
+        "chusteczki"
+      ],
+      "age": 25,
+      "gender": "K",
+      "timestamp": "2025-11-02T13:17:42.926123"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "mąka",
+        "cukier",
+        "jajka",
+        "olej",
+        "drożdże",
+        "rodzynki",
+        "wanilia"
+      ],
+      "age": 25,
+      "gender": "K",
+      "timestamp": "2025-11-04T13:17:42.926123"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "mleko",
+        "jajka",
+        "płatki_śniadaniowe",
+        "chleb",
+        "ser_żółty",
+        "pomidory"
+      ],
+      "age": 28,
+      "gender": "K",
+      "timestamp": "2025-10-23T13:17:42.926123"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "mleko",
+        "jajka",
+        "chleb",
+        "awokado",
+        "szpinak",
+        "jogurt_grecki"
+      ],
+      "age": 28,
+      "gender": "K",
+      "timestamp": "2025-10-25T13:17:42.926123"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "ryż",
+        "kurczak",
+        "brokuły",
+        "marchewka",
+        "cebula",
+        "czosnek"
+      ],
+      "age": 28,
+      "gender": "K",
+      "timestamp": "2025-10-27T13:17:42.926123"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "makaron",
+        "sos_pomidorowy",
+        "ser_mozzarella",
+        "bazylia",
+        "oliwa",
+        "pomidory"
+      ],
+      "age": 28,
+      "gender": "K",
+      "timestamp": "2025-10-30T13:17:42.926123"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "mleko_migdałowe",
+        "płatki_owsiane",
+        "orzechy",
+        "miód",
+        "jagody",
+        "siemie_lniane"
+      ],
+      "age": 28,
+      "gender": "K",
+      "timestamp": "2025-11-03T13:17:42.926123"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "mleko",
+        "chleb",
+        "wędlina_drobiowa",
+        "ser_biały",
+        "ogórki",
+        "jabłka"
+      ],
+      "age": 32,
+      "gender": "K",
+      "timestamp": "2025-10-21T13:17:42.926123"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "kurczak",
+        "ryż_basmati",
+        "curry",
+        "mleko_kokosowe",
+        "limonka",
+        "kolendra"
+      ],
+      "age": 32,
+      "gender": "K",
+      "timestamp": "2025-10-24T13:17:42.926123"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "ziemniaki",
+        "marchew",
+        "pietruszka",
+        "seler",
+        "wołowina",
+        "liść_laurowy"
+      ],
+      "age": 32,
+      "gender": "K",
+      "timestamp": "2025-10-27T13:17:42.926123"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "łosoś",
+        "szparagi",
+        "cytryna",
+        "koperek",
+        "ziemniaki_młode",
+        "koper"
+      ],
+      "age": 32,
+      "gender": "K",
+      "timestamp": "2025-10-30T13:17:42.926123"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "jogurt_dla_dzieci",
+        "chrupki_kukurydziane",
+        "serek_homogenizowany",
+        "mus_owocowy",
+        "biszkopty"
+      ],
+      "age": 32,
+      "gender": "K",
+      "timestamp": "2025-11-03T13:17:42.926123"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "piwo",
+        "chipsy",
+        "kawa",
+        "makaron",
+        "sos_pomidorowy",
+        "parówki"
+      ],
+      "age": 22,
+      "gender": "M",
+      "timestamp": "2025-10-22T13:17:42.926123"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "piwo",
+        "orzeszki",
+        "paluszki",
+        "słone_przekąski",
+        "krakersy"
+      ],
+      "age": 22,
+      "gender": "M",
+      "timestamp": "2025-10-25T13:17:42.926123"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "energetyk",
+        "czekolada",
+        "bułki",
+        "ser_topiony",
+        "szynka",
+        "musztarda"
+      ],
+      "age": 22,
+      "gender": "M",
+      "timestamp": "2025-10-28T13:17:42.926123"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "mrożona_pizza",
+        "frytki",
+        "keczup",
+        "majonez",
+        "cola",
+        "lody"
+      ],
+      "age": 22,
+      "gender": "M",
+      "timestamp": "2025-10-31T13:17:42.926123"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "ryż_jaśminowy",
+        "warzywa_mrożone",
+        "sos_sojowy",
+        "imbir",
+        "czosnek",
+        "olej_sezamowy"
+      ],
+      "age": 22,
+      "gender": "M",
+      "timestamp": "2025-11-04T13:17:42.926123"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "energetyk",
+        "pizza_mrożona",
+        "cola",
+        "chleb",
+        "ser_żółty",
+        "kielbasa"
+      ],
+      "age": 24,
+      "gender": "M",
+      "timestamp": "2025-10-23T13:17:42.926123"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "burger_mrożony",
+        "frytki",
+        "keczup",
+        "majonez",
+        "cola",
+        "lody_czekoladowe"
+      ],
+      "age": 24,
+      "gender": "M",
+      "timestamp": "2025-10-26T13:17:42.926123"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "piwo_craft",
+        "ser_camembert",
+        "oliwki",
+        "bagietka",
+        "winogrona",
+        "szynka"
+      ],
+      "age": 24,
+      "gender": "M",
+      "timestamp": "2025-10-29T13:17:42.926123"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "makaron_penne",
+        "boczek",
+        "śmietana",
+        "pieczarki",
+        "cebula",
+        "parmezan"
+      ],
+      "age": 24,
+      "gender": "M",
+      "timestamp": "2025-11-01T13:17:42.926123"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "jajka",
+        "bekon",
+        "tosty",
+        "awokado",
+        "pomidory",
+        "sok_pomarańczowy"
+      ],
+      "age": 24,
+      "gender": "M",
+      "timestamp": "2025-11-04T13:17:42.926123"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "ryż",
+        "kurczak",
+        "warzywa_mrożone",
+        "oliwa",
+        "czosnek",
+        "pieprz"
+      ],
+      "age": 26,
+      "gender": "M",
+      "timestamp": "2025-10-24T13:17:42.926123"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "ryż",
+        "łosoś",
+        "brokuły",
+        "sos_sojowy",
+        "imbir",
+        "cytryna"
+      ],
+      "age": 26,
+      "gender": "M",
+      "timestamp": "2025-10-26T13:17:42.926123"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "wołowina",
+        "ziemniaki",
+        "cebula",
+        "czosnek",
+        "papryka",
+        "przyprawy"
+      ],
+      "age": 26,
+      "gender": "M",
+      "timestamp": "2025-10-28T13:17:42.926123"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "tuńczyk",
+        "makaron",
+        "kukurydza",
+        "groszek",
+        "majonez",
+        "jogurt"
+      ],
+      "age": 26,
+      "gender": "M",
+      "timestamp": "2025-10-31T13:17:42.926123"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "jajka",
+        "szynka",
+        "ser",
+        "pomidory",
+        "pieczarki",
+        "masło"
+      ],
+      "age": 26,
+      "gender": "M",
+      "timestamp": "2025-11-03T13:17:42.926123"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "herbata",
+        "bułki",
+        "wafelki",
+        "cukier",
+        "margaryna",
+        "dżem"
+      ],
+      "age": 68,
+      "gender": "K",
+      "timestamp": "2025-10-22T13:17:42.926123"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "herbata_owocowa",
+        "ciastka_maślane",
+        "mleko",
+        "cukier_wanilinowy",
+        "jajka"
+      ],
+      "age": 68,
+      "gender": "K",
+      "timestamp": "2025-10-25T13:17:42.926123"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "kawa_ziarnista",
+        "mleko_3,2%",
+        "bułki_maślane",
+        "miód",
+        "masło_ekstra"
+      ],
+      "age": 68,
+      "gender": "K",
+      "timestamp": "2025-10-28T13:17:42.926123"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "ryż_okrągły",
+        "mleko_do_gotowania",
+        "cukier_wanilia",
+        "cynamon",
+        "rodzynki"
+      ],
+      "age": 68,
+      "gender": "K",
+      "timestamp": "2025-10-31T13:17:42.926123"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "mąka_pszenna",
+        "proszek_do_pieczenia",
+        "cukier_puder",
+        "jajka",
+        "margaryna"
+      ],
+      "age": 68,
+      "gender": "K",
+      "timestamp": "2025-11-04T13:17:42.926123"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "kawa",
+        "chleb_razowy",
+        "wędlina_wieprzowa",
+        "ser_pleśniowy",
+        "oliwki",
+        "wino_czerwone"
+      ],
+      "age": 65,
+      "gender": "M",
+      "timestamp": "2025-10-23T13:17:42.926123"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "ser_pleśniowy",
+        "wino_biale",
+        "winogrona",
+        "szynka_surowa",
+        "bagietka"
+      ],
+      "age": 65,
+      "gender": "M",
+      "timestamp": "2025-10-26T13:17:42.926123"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "salami",
+        "ser_camembert",
+        "chleb_żytni",
+        "masło",
+        "rzodkiewka",
+        "piwo_jasne"
+      ],
+      "age": 65,
+      "gender": "M",
+      "timestamp": "2025-10-29T13:17:42.926123"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "wędzona_makrela",
+        "cebula",
+        "śmietana",
+        "chleb_baltonowski",
+        "koper"
+      ],
+      "age": 65,
+      "gender": "M",
+      "timestamp": "2025-11-01T13:17:42.926123"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "kawa_mielona",
+        "herbata_ceylon",
+        "ciastka_czekoladowe",
+        "mleko",
+        "cukier_brązowy"
+      ],
+      "age": 65,
+      "gender": "M",
+      "timestamp": "2025-11-04T13:17:42.926123"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "mleko",
+        "chleb",
+        "masło",
+        "jajka",
+        "ser_żółty",
+        "wędlina",
+        "pomidory",
+        "ogórki",
+        "jabłka",
+        "banany"
+      ],
+      "age": 35,
+      "gender": "K",
+      "timestamp": "2025-10-24T13:17:42.926123"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "mleko",
+        "płatki_śniadaniowe",
+        "jogurt_naturalny",
+        "miód",
+        "migdały",
+        "orzechy"
+      ],
+      "age": 35,
+      "gender": "K",
+      "timestamp": "2025-10-27T13:17:42.926123"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "kurczak",
+        "ziemniaki",
+        "marchewka",
+        "cebula",
+        "pietruszka",
+        "koperek"
+      ],
+      "age": 35,
+      "gender": "K",
+      "timestamp": "2025-10-29T13:17:42.926123"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "makaron_spaghetti",
+        "sos_bolognese",
+        "ser_parmezan",
+        "sałata",
+        "pomidory",
+        "ogórki"
+      ],
+      "age": 35,
+      "gender": "K",
+      "timestamp": "2025-11-01T13:17:42.926123"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "jogurty_owocowe",
+        "chrupki_śniadaniowe",
+        "serek_wiejski",
+        "dżem_truskawkowy",
+        "bułki"
+      ],
+      "age": 35,
+      "gender": "K",
+      "timestamp": "2025-11-04T13:17:42.926123"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "mąka",
+        "cukier",
+        "jajka",
+        "mleko",
+        "olej",
+        "drożdże",
+        "czekolada",
+        "orzechy"
+      ],
+      "age": 38,
+      "gender": "M",
+      "timestamp": "2025-10-22T13:17:42.926123"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "mąka_żytnia",
+        "siemie_lniane",
+        "płatki_owsiane",
+        "miód",
+        "jogurt_naturalny"
+      ],
+      "age": 38,
+      "gender": "M",
+      "timestamp": "2025-10-25T13:17:42.926123"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "wołowina",
+        "cebula",
+        "czosnek",
+        "pieczarki",
+        "śmietana_18%",
+        "makaron"
+      ],
+      "age": 38,
+      "gender": "M",
+      "timestamp": "2025-10-28T13:17:42.926123"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "łosoś",
+        "szpinak",
+        "ziemniaki",
+        "cytryna",
+        "koper",
+        "śmietana_12%"
+      ],
+      "age": 38,
+      "gender": "M",
+      "timestamp": "2025-10-31T13:17:42.926123"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "jajka",
+        "bekon",
+        "pomidory",
+        "pieczarki",
+        "ser_cheddar",
+        "tosty"
+      ],
+      "age": 38,
+      "gender": "M",
+      "timestamp": "2025-11-03T13:17:42.926123"
+    }
+  ],
+  "metadata": {
+    "total_sessions": 51,
+    "unique_users": 10,
+    "generated_at": "2025-11-05T13:17:42.926123"
+  }
+}
