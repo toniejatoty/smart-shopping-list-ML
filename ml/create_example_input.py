@@ -74,20 +74,231 @@ users_data = [
     (10, ['jajka', 'bekon', 'pomidory', 'pieczarki', 'ser_cheddar', 'tosty'], 38, 'M', datetime.now() - timedelta(days=2))
 ]
 
+product_categories = {
+    # 🥛 NABIAŁ I PRODUKTY MLECZNE
+    "mleko": ["nabiał", "napoje"],
+    "ser": ["nabiał", "białko"],
+    "jogurt": ["nabiał", "przekąski"],
+    "jogurt_naturalny": ["nabiał", "zdrowa_żywność"],
+    "jogurt_owocowy": ["nabiał", "słodycze"],
+    "jogurty_owocowe": ["nabiał", "słodycze"],
+    "jogurt_grecki": ["nabiał", "zdrowa_żywność"],
+    "jogurt_dla_dzieci": ["nabiał", "dzieci"],
+    "śmietana": ["nabiał", "dodatki"],
+    "śmietana_12%": ["nabiał", "dodatki"],
+    "śmietana_18%": ["nabiał", "dodatki"],
+    "masło": ["nabiał", "tłuszcze"],
+    "masło_ekstra": ["nabiał", "tłuszcze"],
+    "serek_wiejski": ["nabiał", "białko"],
+    "serek_homogenizowany": ["nabiał", "słodycze"],
+    
+    # 🍞 PIECZYWO I WYPIEKI
+    "chleb": ["pieczywo", "podstawowe"],
+    "chleb_razowy": ["pieczywo", "zdrowa_żywność"],
+    "chleb_żytni": ["pieczywo", "zdrowa_żywność"],
+    "chleb_baltonowski": ["pieczywo", "podstawowe"],
+    "bułki": ["pieczywo", "podstawowe"],
+    "bułki_maślane": ["pieczywo", "słodycze"],
+    "bagietka": ["pieczywo", "podstawowe"],
+    "tosty": ["pieczywo", "śniadaniowe"],
+    
+    # 🥩 MIĘSO I WĘDLINY
+    "kurczak": ["mięso", "białko"],
+    "wołowina": ["mięso", "białko"],
+    "wędlina": ["wędliny", "białko"],
+    "wędlina_drobiowa": ["wędliny", "białko"],
+    "wędlina_wieprzowa": ["wędliny", "białko"],
+    "szynka": ["wędliny", "białko"],
+    "szynka_surowa": ["wędliny", "białko"],
+    "kielbasa": ["wędliny", "białko"],
+    "parówki": ["wędliny", "fast_food"],
+    "bekon": ["wędliny", "tłuszcze"],
+    "boczek": ["wędliny", "tłuszcze"],
+    "salami": ["wędliny", "przekąski"],
+    
+    # 🐟 RYBY I OWOCE MORZA
+    "łosoś": ["ryby", "białko"],
+    "tuńczyk": ["ryby", "konserwy"],
+    "wędzona_makrela": ["ryby", "przekąski"],
+    
+    # 🥚 JAJKA
+    "jajka": ["podstawowe", "białko"],
+    
+    # 🌾 PRODUKTY ZBOŻOWE
+    "mąka": ["podstawowe", "pieczenie"],
+    "mąka_pszenna": ["podstawowe", "pieczenie"],
+    "mąka_żytnia": ["podstawowe", "zdrowa_żywność"],
+    "ryż": ["podstawowe", "węglowodany"],
+    "ryż_basmati": ["podstawowe", "węglowodany"],
+    "ryż_jaśminowy": ["podstawowe", "węglowodany"],
+    "ryż_okrągły": ["podstawowe", "węglowodany"],
+    "makaron": ["podstawowe", "węglowodany"],
+    "makaron_spaghetti": ["podstawowe", "węglowodany"],
+    "makaron_penne": ["podstawowe", "węglowodany"],
+    "płatki_śniadaniowe": ["śniadaniowe", "węglowodany"],
+    "płatki_owsiane": ["śniadaniowe", "zdrowa_żywność"],
+    "kasza": ["podstawowe", "zdrowa_żywność"],
+    
+    # 🥬 WARZYWA
+    "pomidory": ["warzywa", "świeże"],
+    "ogórki": ["warzywa", "świeże"],
+    "marchew": ["warzywa", "świeże"],
+    "marchewka": ["warzywa", "świeże"],
+    "cebula": ["warzywa", "przyprawy"],
+    "czosnek": ["warzywa", "przyprawy"],
+    "papryka": ["warzywa", "świeże"],
+    "sałata": ["warzywa", "świeże"],
+    "szpinak": ["warzywa", "zdrowa_żywność"],
+    "brokuły": ["warzywa", "zdrowa_żywność"],
+    "kalafior": ["warzywa", "zdrowa_żywność"],
+    "ziemniaki": ["warzywa", "podstawowe"],
+    "ziemniaki_młode": ["warzywa", "świeże"],
+    "pieczarki": ["warzywa", "świeże"],
+    "kukurydza": ["warzywa", "konserwy"],
+    "groszek": ["warzywa", "konserwy"],
+    "awokado": ["warzywa", "zdrowa_żywność"],
+    "rzodkiewka": ["warzywa", "świeże"],
+    "szparagi": ["warzywa", "świeże"],
+    
+    # 🍎 OWOCE
+    "jabłka": ["owoce", "świeże"],
+    "banany": ["owoce", "świeże"],
+    "gruszki": ["owoce", "świeże"],
+    "winogrona": ["owoce", "świeże"],
+    "jagody": ["owoce", "świeże"],
+    "cytryna": ["owoce", "przyprawy"],
+    "limonka": ["owoce", "przyprawy"],
+    
+    # 🌿 PRZYPRAWY I ZIOŁA
+    "sól": ["przyprawy", "podstawowe"],
+    "pieprz": ["przyprawy", "podstawowe"],
+    "curry": ["przyprawy", "egzotyczne"],
+    "imbir": ["przyprawy", "egzotyczne"],
+    "cynamon": ["przyprawy", "słodkie"],
+    "liść_laurowy": ["przyprawy", "zioła"],
+    "koperek": ["przyprawy", "zioła"],
+    "kolendra": ["przyprawy", "zioła"],
+    "bazylia": ["przyprawy", "zioła"],
+    "pietruszka": ["przyprawy", "zioła"],
+    "przyprawy": ["przyprawy", "podstawowe"],
+    
+    # 🍯 SŁODYCZE I PRZEKĄSKI
+    "cukier": ["słodycze", "podstawowe"],
+    "cukier_brązowy": ["słodycze", "zdrowa_żywność"],
+    "cukier_puder": ["słodycze", "pieczenie"],
+    "cukier_wanilia": ["słodycze", "pieczenie"],
+    "cukier_wanilinowy": ["słodycze", "pieczenie"],
+    "miód": ["słodycze", "zdrowa_żywność"],
+    "dżem": ["słodycze", "śniadaniowe"],
+    "dżem_truskawkowy": ["słodycze", "śniadaniowe"],
+    "czekolada": ["słodycze", "przekąski"],
+    "ciastka_maślane": ["słodycze", "przekąski"],
+    "ciastka_czekoladowe": ["słodycze", "przekąski"],
+    "herbatniki": ["słodycze", "przekąski"],
+    "biszkopty": ["słodycze", "przekąski"],
+    "wafelki": ["słodycze", "przekąski"],
+    "lody": ["słodycze", "mrożonki"],
+    "lody_czekoladowe": ["słodycze", "mrożonki"],
+    
+    # 🥤 NAPOJE
+    "woda": ["napoje", "podstawowe"],
+    "sok_jabłkowy": ["napoje", "soki"],
+    "sok_pomarańczowy": ["napoje", "soki"],
+    "kawa": ["napoje", "używki"],
+    "kawa_ziarnista": ["napoje", "używki"],
+    "kawa_mielona": ["napoje", "używki"],
+    "herbata": ["napoje", "używki"],
+    "herbata_owocowa": ["napoje", "używki"],
+    "herbata_ceylon": ["napoje", "używki"],
+    "cola": ["napoje", "gazowane"],
+    "energetyk": ["napoje", "używki"],
+    
+    # 🍷 ALKOHOL
+    "piwo": ["alkohol", "napoje"],
+    "piwo_jasne": ["alkohol", "napoje"],
+    "piwo_craft": ["alkohol", "napoje"],
+    "wino_czerwone": ["alkohol", "napoje"],
+    "wino_biale": ["alkohol", "napoje"],
+    
+    # 🍳 TŁUSZCZE I OLEJE
+    "oliwa": ["tłuszcze", "zdrowa_żywność"],
+    "olej": ["tłuszcze", "podstawowe"],
+    "olej_sezamowy": ["tłuszcze", "egzotyczne"],
+    "margaryna": ["tłuszcze", "podstawowe"],
+    
+    # 🍕 PRODUKTY GOTOWE I MROŻONKI
+    "pizza_mrożona": ["mrożonki", "fast_food"],
+    "mrożona_pizza": ["mrożonki", "fast_food"],
+    "burger_mrożony": ["mrożonki", "fast_food"],
+    "frytki": ["mrożonki", "fast_food"],
+    "warzywa_mrożone": ["mrożonki", "warzywa"],
+    
+    # 🥫 SOSY I DODATKI
+    "keczup": ["sosy", "podstawowe"],
+    "majonez": ["sosy", "podstawowe"],
+    "musztarda": ["sosy", "podstawowe"],
+    "sos_pomidorowy": ["sosy", "podstawowe"],
+    "sos_bolognese": ["sosy", "gotowe"],
+    "sos_sojowy": ["sosy", "egzotyczne"],
+    
+    # 🥜 ORZECHY I NASIONA
+    "orzechy": ["zdrowe_przekąski", "białko"],
+    "orzeszki": ["zdrowe_przekąski", "przekąski"],
+    "migdały": ["zdrowe_przekąski", "białko"],
+    "siemie_lniane": ["zdrowe_przekąski", "zdrowa_żywność"],
+    
+    # 🍿 PRZEKĄSKI SŁONE
+    "chipsy": ["przekąski", "słone"],
+    "paluszki": ["przekąski", "słone"],
+    "krakersy": ["przekąski", "słone"],
+    "słone_przekąski": ["przekąski", "słone"],
+    "chrupki": ["przekąski", "słone"],
+    "chrupki_kukurydziane": ["przekąski", "słone"],
+    "chrupki_śniadaniowe": ["przekąski", "śniadaniowe"],
+    
+    # 👶 ARTYKUŁY DLA DZIECI
+    "pampersy": ["dzieci", "higiena"],
+    "mus_owocowy": ["dzieci", "jedzenie"],
+    "chusteczki_nawilżane": ["dzieci", "higiena"],
+    
+    # 🧼 ARTYKUŁY HIGIENICZNE
+    "mydło": ["higiena", "podstawowe"],
+    "chusteczki": ["higiena", "podstawowe"],
+    
+    # 🧁 SKŁADNIKI DO PIECZENIA
+    "drożdże": ["pieczenie", "podstawowe"],
+    "proszek_do_pieczenia": ["pieczenie", "podstawowe"],
+    "wanilia": ["pieczenie", "przyprawy"],
+    "rodzynki": ["pieczenie", "słodycze"],
+    
+    # 🌱 PRODUKTY ALTERNATYWNE
+    "mleko_kokosowe": ["napoje_roślinne", "egzotyczne"],
+    "mleko_migdałowe": ["napoje_roślinne", "zdrowa_żywność"]
+}
+
+list_categories = []
+for data in users_data:
+    categories = []
+    for product in data[1]:
+        categories.extend(product_categories.get(product, []))
+    list_categories.append(list(categories))
+
 def convert_datetime(obj):
     if isinstance(obj, datetime):
         return obj.isoformat()  # "2024-01-29T12:00:00.000000"
     raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+
 data_to_save = {
     "users_data": [
         {
             "user_id": user_id,
             "products": products,
+            "categories": categories,
             "age": age,
             "gender": gender,
             "timestamp": timestamp
         }
-        for user_id, products, age, gender, timestamp in users_data
+        for (user_id, products, age, gender, timestamp),categories in zip(users_data,list_categories)
     ],
     "metadata": {
         "total_sessions": len(users_data),
@@ -97,3 +308,4 @@ data_to_save = {
 }
 with open('example_input.json', 'w', encoding='utf-8') as f:
     json.dump(data_to_save, f, ensure_ascii=False, indent=2, default=convert_datetime)
+print(data_to_save)

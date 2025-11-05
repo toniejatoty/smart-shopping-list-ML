@@ -10,9 +10,23 @@
         "pampersy",
         "banany"
       ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "nabiał",
+        "tłuszcze",
+        "nabiał",
+        "słodycze",
+        "dzieci",
+        "higiena",
+        "owoce",
+        "świeże"
+      ],
       "age": 25,
       "gender": "K",
-      "timestamp": "2025-10-22T13:17:42.926123"
+      "timestamp": "2025-10-22T22:32:50.522505"
     },
     {
       "user_id": 1,
@@ -23,9 +37,21 @@
         "chusteczki_nawilżane",
         "mydło"
       ],
+      "categories": [
+        "podstawowe",
+        "białko",
+        "owoce",
+        "świeże",
+        "dzieci",
+        "higiena",
+        "dzieci",
+        "higiena",
+        "higiena",
+        "podstawowe"
+      ],
       "age": 25,
       "gender": "K",
-      "timestamp": "2025-10-24T13:17:42.926123"
+      "timestamp": "2025-10-24T22:32:50.522505"
     },
     {
       "user_id": 1,
@@ -37,9 +63,23 @@
         "sok_jabłkowy",
         "biszkopty"
       ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "nabiał",
+        "tłuszcze",
+        "nabiał",
+        "słodycze",
+        "napoje",
+        "soki",
+        "słodycze",
+        "przekąski"
+      ],
       "age": 25,
       "gender": "K",
-      "timestamp": "2025-10-26T13:17:42.926123"
+      "timestamp": "2025-10-26T22:32:50.522505"
     },
     {
       "user_id": 1,
@@ -51,9 +91,21 @@
         "jabłka",
         "herbatniki"
       ],
+      "categories": [
+        "wędliny",
+        "białko",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "owoce",
+        "świeże",
+        "słodycze",
+        "przekąski"
+      ],
       "age": 25,
       "gender": "K",
-      "timestamp": "2025-10-29T13:17:42.926123"
+      "timestamp": "2025-10-29T22:32:50.522505"
     },
     {
       "user_id": 1,
@@ -65,9 +117,21 @@
         "gruszki",
         "chusteczki"
       ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "śniadaniowe",
+        "węglowodany",
+        "nabiał",
+        "zdrowa_żywność",
+        "owoce",
+        "świeże",
+        "higiena",
+        "podstawowe"
+      ],
       "age": 25,
       "gender": "K",
-      "timestamp": "2025-11-02T13:17:42.926123"
+      "timestamp": "2025-11-02T22:32:50.522505"
     },
     {
       "user_id": 1,
@@ -80,9 +144,25 @@
         "rodzynki",
         "wanilia"
       ],
+      "categories": [
+        "podstawowe",
+        "pieczenie",
+        "słodycze",
+        "podstawowe",
+        "podstawowe",
+        "białko",
+        "tłuszcze",
+        "podstawowe",
+        "pieczenie",
+        "podstawowe",
+        "pieczenie",
+        "słodycze",
+        "pieczenie",
+        "przyprawy"
+      ],
       "age": 25,
       "gender": "K",
-      "timestamp": "2025-11-04T13:17:42.926123"
+      "timestamp": "2025-11-04T22:32:50.522505"
     },
     {
       "user_id": 2,
@@ -94,9 +174,21 @@
         "ser_żółty",
         "pomidory"
       ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "podstawowe",
+        "białko",
+        "śniadaniowe",
+        "węglowodany",
+        "pieczywo",
+        "podstawowe",
+        "warzywa",
+        "świeże"
+      ],
       "age": 28,
       "gender": "K",
-      "timestamp": "2025-10-23T13:17:42.926123"
+      "timestamp": "2025-10-23T22:32:50.522505"
     },
     {
       "user_id": 2,
@@ -108,9 +200,23 @@
         "szpinak",
         "jogurt_grecki"
       ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "podstawowe",
+        "białko",
+        "pieczywo",
+        "podstawowe",
+        "warzywa",
+        "zdrowa_żywność",
+        "warzywa",
+        "zdrowa_żywność",
+        "nabiał",
+        "zdrowa_żywność"
+      ],
       "age": 28,
       "gender": "K",
-      "timestamp": "2025-10-25T13:17:42.926123"
+      "timestamp": "2025-10-25T22:32:50.522505"
     },
     {
       "user_id": 2,
@@ -122,9 +228,23 @@
         "cebula",
         "czosnek"
       ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "mięso",
+        "białko",
+        "warzywa",
+        "zdrowa_żywność",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "przyprawy"
+      ],
       "age": 28,
       "gender": "K",
-      "timestamp": "2025-10-27T13:17:42.926123"
+      "timestamp": "2025-10-27T22:32:50.522505"
     },
     {
       "user_id": 2,
@@ -136,9 +256,21 @@
         "oliwa",
         "pomidory"
       ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "sosy",
+        "podstawowe",
+        "przyprawy",
+        "zioła",
+        "tłuszcze",
+        "zdrowa_żywność",
+        "warzywa",
+        "świeże"
+      ],
       "age": 28,
       "gender": "K",
-      "timestamp": "2025-10-30T13:17:42.926123"
+      "timestamp": "2025-10-30T22:32:50.522505"
     },
     {
       "user_id": 2,
@@ -150,9 +282,23 @@
         "jagody",
         "siemie_lniane"
       ],
+      "categories": [
+        "napoje_roślinne",
+        "zdrowa_żywność",
+        "śniadaniowe",
+        "zdrowa_żywność",
+        "zdrowe_przekąski",
+        "białko",
+        "słodycze",
+        "zdrowa_żywność",
+        "owoce",
+        "świeże",
+        "zdrowe_przekąski",
+        "zdrowa_żywność"
+      ],
       "age": 28,
       "gender": "K",
-      "timestamp": "2025-11-03T13:17:42.926123"
+      "timestamp": "2025-11-03T22:32:50.522505"
     },
     {
       "user_id": 3,
@@ -164,9 +310,21 @@
         "ogórki",
         "jabłka"
       ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "wędliny",
+        "białko",
+        "warzywa",
+        "świeże",
+        "owoce",
+        "świeże"
+      ],
       "age": 32,
       "gender": "K",
-      "timestamp": "2025-10-21T13:17:42.926123"
+      "timestamp": "2025-10-21T22:32:50.522505"
     },
     {
       "user_id": 3,
@@ -178,9 +336,23 @@
         "limonka",
         "kolendra"
       ],
+      "categories": [
+        "mięso",
+        "białko",
+        "podstawowe",
+        "węglowodany",
+        "przyprawy",
+        "egzotyczne",
+        "napoje_roślinne",
+        "egzotyczne",
+        "owoce",
+        "przyprawy",
+        "przyprawy",
+        "zioła"
+      ],
       "age": 32,
       "gender": "K",
-      "timestamp": "2025-10-24T13:17:42.926123"
+      "timestamp": "2025-10-24T22:32:50.522505"
     },
     {
       "user_id": 3,
@@ -192,9 +364,21 @@
         "wołowina",
         "liść_laurowy"
       ],
+      "categories": [
+        "warzywa",
+        "podstawowe",
+        "warzywa",
+        "świeże",
+        "przyprawy",
+        "zioła",
+        "mięso",
+        "białko",
+        "przyprawy",
+        "zioła"
+      ],
       "age": 32,
       "gender": "K",
-      "timestamp": "2025-10-27T13:17:42.926123"
+      "timestamp": "2025-10-27T22:32:50.522505"
     },
     {
       "user_id": 3,
@@ -206,9 +390,21 @@
         "ziemniaki_młode",
         "koper"
       ],
+      "categories": [
+        "ryby",
+        "białko",
+        "warzywa",
+        "świeże",
+        "owoce",
+        "przyprawy",
+        "przyprawy",
+        "zioła",
+        "warzywa",
+        "świeże"
+      ],
       "age": 32,
       "gender": "K",
-      "timestamp": "2025-10-30T13:17:42.926123"
+      "timestamp": "2025-10-30T22:32:50.522505"
     },
     {
       "user_id": 3,
@@ -219,9 +415,21 @@
         "mus_owocowy",
         "biszkopty"
       ],
+      "categories": [
+        "nabiał",
+        "dzieci",
+        "przekąski",
+        "słone",
+        "nabiał",
+        "słodycze",
+        "dzieci",
+        "jedzenie",
+        "słodycze",
+        "przekąski"
+      ],
       "age": 32,
       "gender": "K",
-      "timestamp": "2025-11-03T13:17:42.926123"
+      "timestamp": "2025-11-03T22:32:50.522505"
     },
     {
       "user_id": 4,
@@ -233,9 +441,23 @@
         "sos_pomidorowy",
         "parówki"
       ],
+      "categories": [
+        "alkohol",
+        "napoje",
+        "przekąski",
+        "słone",
+        "napoje",
+        "używki",
+        "podstawowe",
+        "węglowodany",
+        "sosy",
+        "podstawowe",
+        "wędliny",
+        "fast_food"
+      ],
       "age": 22,
       "gender": "M",
-      "timestamp": "2025-10-22T13:17:42.926123"
+      "timestamp": "2025-10-22T22:32:50.522505"
     },
     {
       "user_id": 4,
@@ -246,9 +468,21 @@
         "słone_przekąski",
         "krakersy"
       ],
+      "categories": [
+        "alkohol",
+        "napoje",
+        "zdrowe_przekąski",
+        "przekąski",
+        "przekąski",
+        "słone",
+        "przekąski",
+        "słone",
+        "przekąski",
+        "słone"
+      ],
       "age": 22,
       "gender": "M",
-      "timestamp": "2025-10-25T13:17:42.926123"
+      "timestamp": "2025-10-25T22:32:50.522505"
     },
     {
       "user_id": 4,
@@ -260,9 +494,21 @@
         "szynka",
         "musztarda"
       ],
+      "categories": [
+        "napoje",
+        "używki",
+        "słodycze",
+        "przekąski",
+        "pieczywo",
+        "podstawowe",
+        "wędliny",
+        "białko",
+        "sosy",
+        "podstawowe"
+      ],
       "age": 22,
       "gender": "M",
-      "timestamp": "2025-10-28T13:17:42.926123"
+      "timestamp": "2025-10-28T22:32:50.522505"
     },
     {
       "user_id": 4,
@@ -274,9 +520,23 @@
         "cola",
         "lody"
       ],
+      "categories": [
+        "mrożonki",
+        "fast_food",
+        "mrożonki",
+        "fast_food",
+        "sosy",
+        "podstawowe",
+        "sosy",
+        "podstawowe",
+        "napoje",
+        "gazowane",
+        "słodycze",
+        "mrożonki"
+      ],
       "age": 22,
       "gender": "M",
-      "timestamp": "2025-10-31T13:17:42.926123"
+      "timestamp": "2025-10-31T22:32:50.522505"
     },
     {
       "user_id": 4,
@@ -288,9 +548,23 @@
         "czosnek",
         "olej_sezamowy"
       ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "mrożonki",
+        "warzywa",
+        "sosy",
+        "egzotyczne",
+        "przyprawy",
+        "egzotyczne",
+        "warzywa",
+        "przyprawy",
+        "tłuszcze",
+        "egzotyczne"
+      ],
       "age": 22,
       "gender": "M",
-      "timestamp": "2025-11-04T13:17:42.926123"
+      "timestamp": "2025-11-04T22:32:50.522505"
     },
     {
       "user_id": 5,
@@ -302,9 +576,21 @@
         "ser_żółty",
         "kielbasa"
       ],
+      "categories": [
+        "napoje",
+        "używki",
+        "mrożonki",
+        "fast_food",
+        "napoje",
+        "gazowane",
+        "pieczywo",
+        "podstawowe",
+        "wędliny",
+        "białko"
+      ],
       "age": 24,
       "gender": "M",
-      "timestamp": "2025-10-23T13:17:42.926123"
+      "timestamp": "2025-10-23T22:32:50.522505"
     },
     {
       "user_id": 5,
@@ -316,9 +602,23 @@
         "cola",
         "lody_czekoladowe"
       ],
+      "categories": [
+        "mrożonki",
+        "fast_food",
+        "mrożonki",
+        "fast_food",
+        "sosy",
+        "podstawowe",
+        "sosy",
+        "podstawowe",
+        "napoje",
+        "gazowane",
+        "słodycze",
+        "mrożonki"
+      ],
       "age": 24,
       "gender": "M",
-      "timestamp": "2025-10-26T13:17:42.926123"
+      "timestamp": "2025-10-26T22:32:50.522505"
     },
     {
       "user_id": 5,
@@ -330,9 +630,19 @@
         "winogrona",
         "szynka"
       ],
+      "categories": [
+        "alkohol",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "owoce",
+        "świeże",
+        "wędliny",
+        "białko"
+      ],
       "age": 24,
       "gender": "M",
-      "timestamp": "2025-10-29T13:17:42.926123"
+      "timestamp": "2025-10-29T22:32:50.522505"
     },
     {
       "user_id": 5,
@@ -344,9 +654,21 @@
         "cebula",
         "parmezan"
       ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "wędliny",
+        "tłuszcze",
+        "nabiał",
+        "dodatki",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "przyprawy"
+      ],
       "age": 24,
       "gender": "M",
-      "timestamp": "2025-11-01T13:17:42.926123"
+      "timestamp": "2025-11-01T22:32:50.522505"
     },
     {
       "user_id": 5,
@@ -358,9 +680,23 @@
         "pomidory",
         "sok_pomarańczowy"
       ],
+      "categories": [
+        "podstawowe",
+        "białko",
+        "wędliny",
+        "tłuszcze",
+        "pieczywo",
+        "śniadaniowe",
+        "warzywa",
+        "zdrowa_żywność",
+        "warzywa",
+        "świeże",
+        "napoje",
+        "soki"
+      ],
       "age": 24,
       "gender": "M",
-      "timestamp": "2025-11-04T13:17:42.926123"
+      "timestamp": "2025-11-04T22:32:50.522505"
     },
     {
       "user_id": 6,
@@ -372,9 +708,23 @@
         "czosnek",
         "pieprz"
       ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "mięso",
+        "białko",
+        "mrożonki",
+        "warzywa",
+        "tłuszcze",
+        "zdrowa_żywność",
+        "warzywa",
+        "przyprawy",
+        "przyprawy",
+        "podstawowe"
+      ],
       "age": 26,
       "gender": "M",
-      "timestamp": "2025-10-24T13:17:42.926123"
+      "timestamp": "2025-10-24T22:32:50.522505"
     },
     {
       "user_id": 6,
@@ -386,9 +736,23 @@
         "imbir",
         "cytryna"
       ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "ryby",
+        "białko",
+        "warzywa",
+        "zdrowa_żywność",
+        "sosy",
+        "egzotyczne",
+        "przyprawy",
+        "egzotyczne",
+        "owoce",
+        "przyprawy"
+      ],
       "age": 26,
       "gender": "M",
-      "timestamp": "2025-10-26T13:17:42.926123"
+      "timestamp": "2025-10-26T22:32:50.522505"
     },
     {
       "user_id": 6,
@@ -400,9 +764,23 @@
         "papryka",
         "przyprawy"
       ],
+      "categories": [
+        "mięso",
+        "białko",
+        "warzywa",
+        "podstawowe",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "świeże",
+        "przyprawy",
+        "podstawowe"
+      ],
       "age": 26,
       "gender": "M",
-      "timestamp": "2025-10-28T13:17:42.926123"
+      "timestamp": "2025-10-28T22:32:50.522505"
     },
     {
       "user_id": 6,
@@ -414,9 +792,23 @@
         "majonez",
         "jogurt"
       ],
+      "categories": [
+        "ryby",
+        "konserwy",
+        "podstawowe",
+        "węglowodany",
+        "warzywa",
+        "konserwy",
+        "warzywa",
+        "konserwy",
+        "sosy",
+        "podstawowe",
+        "nabiał",
+        "przekąski"
+      ],
       "age": 26,
       "gender": "M",
-      "timestamp": "2025-10-31T13:17:42.926123"
+      "timestamp": "2025-10-31T22:32:50.522505"
     },
     {
       "user_id": 6,
@@ -428,9 +820,23 @@
         "pieczarki",
         "masło"
       ],
+      "categories": [
+        "podstawowe",
+        "białko",
+        "wędliny",
+        "białko",
+        "nabiał",
+        "białko",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "nabiał",
+        "tłuszcze"
+      ],
       "age": 26,
       "gender": "M",
-      "timestamp": "2025-11-03T13:17:42.926123"
+      "timestamp": "2025-11-03T22:32:50.522505"
     },
     {
       "user_id": 7,
@@ -442,9 +848,23 @@
         "margaryna",
         "dżem"
       ],
+      "categories": [
+        "napoje",
+        "używki",
+        "pieczywo",
+        "podstawowe",
+        "słodycze",
+        "przekąski",
+        "słodycze",
+        "podstawowe",
+        "tłuszcze",
+        "podstawowe",
+        "słodycze",
+        "śniadaniowe"
+      ],
       "age": 68,
       "gender": "K",
-      "timestamp": "2025-10-22T13:17:42.926123"
+      "timestamp": "2025-10-22T22:32:50.522505"
     },
     {
       "user_id": 7,
@@ -455,9 +875,21 @@
         "cukier_wanilinowy",
         "jajka"
       ],
+      "categories": [
+        "napoje",
+        "używki",
+        "słodycze",
+        "przekąski",
+        "nabiał",
+        "napoje",
+        "słodycze",
+        "pieczenie",
+        "podstawowe",
+        "białko"
+      ],
       "age": 68,
       "gender": "K",
-      "timestamp": "2025-10-25T13:17:42.926123"
+      "timestamp": "2025-10-25T22:32:50.522505"
     },
     {
       "user_id": 7,
@@ -468,9 +900,19 @@
         "miód",
         "masło_ekstra"
       ],
+      "categories": [
+        "napoje",
+        "używki",
+        "pieczywo",
+        "słodycze",
+        "słodycze",
+        "zdrowa_żywność",
+        "nabiał",
+        "tłuszcze"
+      ],
       "age": 68,
       "gender": "K",
-      "timestamp": "2025-10-28T13:17:42.926123"
+      "timestamp": "2025-10-28T22:32:50.522505"
     },
     {
       "user_id": 7,
@@ -481,9 +923,19 @@
         "cynamon",
         "rodzynki"
       ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "słodycze",
+        "pieczenie",
+        "przyprawy",
+        "słodkie",
+        "pieczenie",
+        "słodycze"
+      ],
       "age": 68,
       "gender": "K",
-      "timestamp": "2025-10-31T13:17:42.926123"
+      "timestamp": "2025-10-31T22:32:50.522505"
     },
     {
       "user_id": 7,
@@ -494,9 +946,21 @@
         "jajka",
         "margaryna"
       ],
+      "categories": [
+        "podstawowe",
+        "pieczenie",
+        "pieczenie",
+        "podstawowe",
+        "słodycze",
+        "pieczenie",
+        "podstawowe",
+        "białko",
+        "tłuszcze",
+        "podstawowe"
+      ],
       "age": 68,
       "gender": "K",
-      "timestamp": "2025-11-04T13:17:42.926123"
+      "timestamp": "2025-11-04T22:32:50.522505"
     },
     {
       "user_id": 8,
@@ -508,9 +972,19 @@
         "oliwki",
         "wino_czerwone"
       ],
+      "categories": [
+        "napoje",
+        "używki",
+        "pieczywo",
+        "zdrowa_żywność",
+        "wędliny",
+        "białko",
+        "alkohol",
+        "napoje"
+      ],
       "age": 65,
       "gender": "M",
-      "timestamp": "2025-10-23T13:17:42.926123"
+      "timestamp": "2025-10-23T22:32:50.522505"
     },
     {
       "user_id": 8,
@@ -521,9 +995,19 @@
         "szynka_surowa",
         "bagietka"
       ],
+      "categories": [
+        "alkohol",
+        "napoje",
+        "owoce",
+        "świeże",
+        "wędliny",
+        "białko",
+        "pieczywo",
+        "podstawowe"
+      ],
       "age": 65,
       "gender": "M",
-      "timestamp": "2025-10-26T13:17:42.926123"
+      "timestamp": "2025-10-26T22:32:50.522505"
     },
     {
       "user_id": 8,
@@ -535,9 +1019,21 @@
         "rzodkiewka",
         "piwo_jasne"
       ],
+      "categories": [
+        "wędliny",
+        "przekąski",
+        "pieczywo",
+        "zdrowa_żywność",
+        "nabiał",
+        "tłuszcze",
+        "warzywa",
+        "świeże",
+        "alkohol",
+        "napoje"
+      ],
       "age": 65,
       "gender": "M",
-      "timestamp": "2025-10-29T13:17:42.926123"
+      "timestamp": "2025-10-29T22:32:50.522505"
     },
     {
       "user_id": 8,
@@ -548,9 +1044,19 @@
         "chleb_baltonowski",
         "koper"
       ],
+      "categories": [
+        "ryby",
+        "przekąski",
+        "warzywa",
+        "przyprawy",
+        "nabiał",
+        "dodatki",
+        "pieczywo",
+        "podstawowe"
+      ],
       "age": 65,
       "gender": "M",
-      "timestamp": "2025-11-01T13:17:42.926123"
+      "timestamp": "2025-11-01T22:32:50.522505"
     },
     {
       "user_id": 8,
@@ -561,9 +1067,21 @@
         "mleko",
         "cukier_brązowy"
       ],
+      "categories": [
+        "napoje",
+        "używki",
+        "napoje",
+        "używki",
+        "słodycze",
+        "przekąski",
+        "nabiał",
+        "napoje",
+        "słodycze",
+        "zdrowa_żywność"
+      ],
       "age": 65,
       "gender": "M",
-      "timestamp": "2025-11-04T13:17:42.926123"
+      "timestamp": "2025-11-04T22:32:50.522505"
     },
     {
       "user_id": 9,
@@ -579,9 +1097,29 @@
         "jabłka",
         "banany"
       ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "nabiał",
+        "tłuszcze",
+        "podstawowe",
+        "białko",
+        "wędliny",
+        "białko",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "owoce",
+        "świeże",
+        "owoce",
+        "świeże"
+      ],
       "age": 35,
       "gender": "K",
-      "timestamp": "2025-10-24T13:17:42.926123"
+      "timestamp": "2025-10-24T22:32:50.522505"
     },
     {
       "user_id": 9,
@@ -593,9 +1131,23 @@
         "migdały",
         "orzechy"
       ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "śniadaniowe",
+        "węglowodany",
+        "nabiał",
+        "zdrowa_żywność",
+        "słodycze",
+        "zdrowa_żywność",
+        "zdrowe_przekąski",
+        "białko",
+        "zdrowe_przekąski",
+        "białko"
+      ],
       "age": 35,
       "gender": "K",
-      "timestamp": "2025-10-27T13:17:42.926123"
+      "timestamp": "2025-10-27T22:32:50.522505"
     },
     {
       "user_id": 9,
@@ -607,9 +1159,23 @@
         "pietruszka",
         "koperek"
       ],
+      "categories": [
+        "mięso",
+        "białko",
+        "warzywa",
+        "podstawowe",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "przyprawy",
+        "przyprawy",
+        "zioła",
+        "przyprawy",
+        "zioła"
+      ],
       "age": 35,
       "gender": "K",
-      "timestamp": "2025-10-29T13:17:42.926123"
+      "timestamp": "2025-10-29T22:32:50.522505"
     },
     {
       "user_id": 9,
@@ -621,9 +1187,21 @@
         "pomidory",
         "ogórki"
       ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "sosy",
+        "gotowe",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże"
+      ],
       "age": 35,
       "gender": "K",
-      "timestamp": "2025-11-01T13:17:42.926123"
+      "timestamp": "2025-11-01T22:32:50.522505"
     },
     {
       "user_id": 9,
@@ -634,9 +1212,21 @@
         "dżem_truskawkowy",
         "bułki"
       ],
+      "categories": [
+        "nabiał",
+        "słodycze",
+        "przekąski",
+        "śniadaniowe",
+        "nabiał",
+        "białko",
+        "słodycze",
+        "śniadaniowe",
+        "pieczywo",
+        "podstawowe"
+      ],
       "age": 35,
       "gender": "K",
-      "timestamp": "2025-11-04T13:17:42.926123"
+      "timestamp": "2025-11-04T22:32:50.522505"
     },
     {
       "user_id": 10,
@@ -650,9 +1240,27 @@
         "czekolada",
         "orzechy"
       ],
+      "categories": [
+        "podstawowe",
+        "pieczenie",
+        "słodycze",
+        "podstawowe",
+        "podstawowe",
+        "białko",
+        "nabiał",
+        "napoje",
+        "tłuszcze",
+        "podstawowe",
+        "pieczenie",
+        "podstawowe",
+        "słodycze",
+        "przekąski",
+        "zdrowe_przekąski",
+        "białko"
+      ],
       "age": 38,
       "gender": "M",
-      "timestamp": "2025-10-22T13:17:42.926123"
+      "timestamp": "2025-10-22T22:32:50.522505"
     },
     {
       "user_id": 10,
@@ -663,9 +1271,21 @@
         "miód",
         "jogurt_naturalny"
       ],
+      "categories": [
+        "podstawowe",
+        "zdrowa_żywność",
+        "zdrowe_przekąski",
+        "zdrowa_żywność",
+        "śniadaniowe",
+        "zdrowa_żywność",
+        "słodycze",
+        "zdrowa_żywność",
+        "nabiał",
+        "zdrowa_żywność"
+      ],
       "age": 38,
       "gender": "M",
-      "timestamp": "2025-10-25T13:17:42.926123"
+      "timestamp": "2025-10-25T22:32:50.522505"
     },
     {
       "user_id": 10,
@@ -677,9 +1297,23 @@
         "śmietana_18%",
         "makaron"
       ],
+      "categories": [
+        "mięso",
+        "białko",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "świeże",
+        "nabiał",
+        "dodatki",
+        "podstawowe",
+        "węglowodany"
+      ],
       "age": 38,
       "gender": "M",
-      "timestamp": "2025-10-28T13:17:42.926123"
+      "timestamp": "2025-10-28T22:32:50.522505"
     },
     {
       "user_id": 10,
@@ -691,9 +1325,21 @@
         "koper",
         "śmietana_12%"
       ],
+      "categories": [
+        "ryby",
+        "białko",
+        "warzywa",
+        "zdrowa_żywność",
+        "warzywa",
+        "podstawowe",
+        "owoce",
+        "przyprawy",
+        "nabiał",
+        "dodatki"
+      ],
       "age": 38,
       "gender": "M",
-      "timestamp": "2025-10-31T13:17:42.926123"
+      "timestamp": "2025-10-31T22:32:50.522505"
     },
     {
       "user_id": 10,
@@ -705,14 +1351,26 @@
         "ser_cheddar",
         "tosty"
       ],
+      "categories": [
+        "podstawowe",
+        "białko",
+        "wędliny",
+        "tłuszcze",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "pieczywo",
+        "śniadaniowe"
+      ],
       "age": 38,
       "gender": "M",
-      "timestamp": "2025-11-03T13:17:42.926123"
+      "timestamp": "2025-11-03T22:32:50.522505"
     }
   ],
   "metadata": {
     "total_sessions": 51,
     "unique_users": 10,
-    "generated_at": "2025-11-05T13:17:42.926123"
+    "generated_at": "2025-11-05T22:32:50.522505"
   }
 }
