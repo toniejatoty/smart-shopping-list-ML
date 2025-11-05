@@ -1,10 +1,44 @@
 import pytorchmodel
 import json
 from datetime import datetime
-data = json.load(open('example_input.json', 'r', encoding='utf-8'))
 
-user_data = data['users_data']
-for i in range(len(user_data)):
-    user_data[i]['gender']=int(user_data[i]['gender']=='K')
-    user_data[i]['timestamp'] = (datetime.now() - datetime.strptime(user_data[i]['timestamp'], "%Y-%m-%dT%H:%M:%S.%f")).days 
+class ProductProcessor:
+    """Klasa zajmuje się przetworzeniem id produktu i kategorii na mniejszą liczbę. Oraz mapowanie
+     produkt na kategorie jakie ma """
+    def __init__(self):
+        self.product_to_id = {}
+        self.id_to_product = {}
+        #self.category_to_id = {}
+        #self.id_to_category = {}
+        #self.product_categories = {}  # Mapowanie product_id -> category_ids
+        self.next_product_id = 1
+        #self.next_category_id = 1
+    def process_data(self, users_data):
+        """Przetwarza pojedynczy produkt i zwraca jego ID"""
+        for i in range(len(users_data)):
+            users_data[i]['gender']=int(users_data[i]['gender']=='K')
+            users_data[i]['timestamp'] = (datetime.now() - datetime.strptime(users_data[i]['timestamp'], "%Y-%m-%dT%H:%M:%S.%f")).days 
+
+        for i in range(len(users_data)):
+            for j in range(len(users_data[i]['products'])):
+                if users_data[i]['products'][j] not in self.product_to_id:
+                    self.product_to_id[users_data[i]['products'][j]] = self.next_product_id
+                    self.id_to_product[self.next_product_id] = users_data[i]['products'][j]
+                    self.next_product_id += 1
+                users_data[i]['products'][j] = self.product_to_id[users_data[i]['products'][j]]
+        return users_data
+    def get_vocab_size(self):
+        return len(self.product_to_id)
+    
+    #def get_num_categories(self):
+     #   return len(self.category_to_id)
+
+
+
+data = json.load(open('example_input.json', 'r', encoding='utf-8'))
+productprocessor = ProductProcessor()
+user_data = productprocessor.process_data(data['users_data'])
 print(user_data)
+
+
+#pytorchmodel.get_prediction(user_data)
