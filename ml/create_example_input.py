@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import json
+from pathlib import Path
 users_data = [
 
     # User 1 - Młoda kobieta (rodzina z dziećmi)
@@ -294,8 +295,8 @@ data_to_save = {
             "user_id": user_id,
             "products": products,
             "categories": categories,
-            "age": age,
-            "gender": gender,
+     #       "age": age,
+#            "gender": gender,
             "timestamp": timestamp
         }
         for (user_id, products, age, gender, timestamp),categories in zip(users_data,list_categories)
@@ -306,6 +307,10 @@ data_to_save = {
         "generated_at": datetime.now().isoformat()
     }
 }
-with open('example_input.json', 'w', encoding='utf-8') as f:
+BASE_DIR = Path(__file__).resolve().parent
+data_dir = BASE_DIR / "data"
+file_path = data_dir / "example_input.json"
+
+with open(file_path, 'w', encoding='utf-8') as f:
     json.dump(data_to_save, f, ensure_ascii=False, indent=2, default=convert_datetime)
 print(data_to_save)
