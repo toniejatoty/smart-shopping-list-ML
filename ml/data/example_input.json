@@ -24,9 +24,7 @@
         "owoce",
         "świeże"
       ],
-      "age": 25,
-      "gender": "K",
-      "timestamp": "2025-10-22T22:32:50.522505"
+      "timestamp": "2025-10-25T19:10:57.307506"
     },
     {
       "user_id": 1,
@@ -49,9 +47,7 @@
         "higiena",
         "podstawowe"
       ],
-      "age": 25,
-      "gender": "K",
-      "timestamp": "2025-10-24T22:32:50.522505"
+      "timestamp": "2025-10-27T19:10:57.307506"
     },
     {
       "user_id": 1,
@@ -77,9 +73,7 @@
         "słodycze",
         "przekąski"
       ],
-      "age": 25,
-      "gender": "K",
-      "timestamp": "2025-10-26T22:32:50.522505"
+      "timestamp": "2025-10-29T19:10:57.307506"
     },
     {
       "user_id": 1,
@@ -103,9 +97,7 @@
         "słodycze",
         "przekąski"
       ],
-      "age": 25,
-      "gender": "K",
-      "timestamp": "2025-10-29T22:32:50.522505"
+      "timestamp": "2025-11-01T19:10:57.307506"
     },
     {
       "user_id": 1,
@@ -129,9 +121,7 @@
         "higiena",
         "podstawowe"
       ],
-      "age": 25,
-      "gender": "K",
-      "timestamp": "2025-11-02T22:32:50.522505"
+      "timestamp": "2025-11-05T19:10:57.307506"
     },
     {
       "user_id": 1,
@@ -160,9 +150,7 @@
         "pieczenie",
         "przyprawy"
       ],
-      "age": 25,
-      "gender": "K",
-      "timestamp": "2025-11-04T22:32:50.522505"
+      "timestamp": "2025-11-07T19:10:57.307506"
     },
     {
       "user_id": 2,
@@ -186,9 +174,7 @@
         "warzywa",
         "świeże"
       ],
-      "age": 28,
-      "gender": "K",
-      "timestamp": "2025-10-23T22:32:50.522505"
+      "timestamp": "2025-10-26T19:10:57.307506"
     },
     {
       "user_id": 2,
@@ -214,9 +200,7 @@
         "nabiał",
         "zdrowa_żywność"
       ],
-      "age": 28,
-      "gender": "K",
-      "timestamp": "2025-10-25T22:32:50.522505"
+      "timestamp": "2025-10-28T19:10:57.307506"
     },
     {
       "user_id": 2,
@@ -242,9 +226,7 @@
         "warzywa",
         "przyprawy"
       ],
-      "age": 28,
-      "gender": "K",
-      "timestamp": "2025-10-27T22:32:50.522505"
+      "timestamp": "2025-10-30T19:10:57.307506"
     },
     {
       "user_id": 2,
@@ -268,9 +250,7 @@
         "warzywa",
         "świeże"
       ],
-      "age": 28,
-      "gender": "K",
-      "timestamp": "2025-10-30T22:32:50.522505"
+      "timestamp": "2025-11-02T19:10:57.307506"
     },
     {
       "user_id": 2,
@@ -296,9 +276,7 @@
         "zdrowe_przekąski",
         "zdrowa_żywność"
       ],
-      "age": 28,
-      "gender": "K",
-      "timestamp": "2025-11-03T22:32:50.522505"
+      "timestamp": "2025-11-06T19:10:57.307506"
     },
     {
       "user_id": 3,
@@ -322,9 +300,7 @@
         "owoce",
         "świeże"
       ],
-      "age": 32,
-      "gender": "K",
-      "timestamp": "2025-10-21T22:32:50.522505"
+      "timestamp": "2025-10-24T19:10:57.307506"
     },
     {
       "user_id": 3,
@@ -350,9 +326,7 @@
         "przyprawy",
         "zioła"
       ],
-      "age": 32,
-      "gender": "K",
-      "timestamp": "2025-10-24T22:32:50.522505"
+      "timestamp": "2025-10-27T19:10:57.307506"
     },
     {
       "user_id": 3,
@@ -376,9 +350,7 @@
         "przyprawy",
         "zioła"
       ],
-      "age": 32,
-      "gender": "K",
-      "timestamp": "2025-10-27T22:32:50.522505"
+      "timestamp": "2025-10-30T19:10:57.307506"
     },
     {
       "user_id": 3,
@@ -402,9 +374,7 @@
         "warzywa",
         "świeże"
       ],
-      "age": 32,
-      "gender": "K",
-      "timestamp": "2025-10-30T22:32:50.522505"
+      "timestamp": "2025-11-02T19:10:57.307506"
     },
     {
       "user_id": 3,
@@ -427,9 +397,7 @@
         "słodycze",
         "przekąski"
       ],
-      "age": 32,
-      "gender": "K",
-      "timestamp": "2025-11-03T22:32:50.522505"
+      "timestamp": "2025-11-06T19:10:57.307506"
     },
     {
       "user_id": 4,
@@ -455,9 +423,7 @@
         "wędliny",
         "fast_food"
       ],
-      "age": 22,
-      "gender": "M",
-      "timestamp": "2025-10-22T22:32:50.522505"
+      "timestamp": "2025-10-25T19:10:57.307506"
     },
     {
       "user_id": 4,
@@ -480,9 +446,7 @@
         "przekąski",
         "słone"
       ],
-      "age": 22,
-      "gender": "M",
-      "timestamp": "2025-10-25T22:32:50.522505"
+      "timestamp": "2025-10-28T19:10:57.307506"
     },
     {
       "user_id": 4,
@@ -506,9 +470,7 @@
         "sosy",
         "podstawowe"
       ],
-      "age": 22,
-      "gender": "M",
-      "timestamp": "2025-10-28T22:32:50.522505"
+      "timestamp": "2025-10-31T19:10:57.307506"
     },
     {
       "user_id": 4,
@@ -534,9 +496,7 @@
         "słodycze",
         "mrożonki"
       ],
-      "age": 22,
-      "gender": "M",
-      "timestamp": "2025-10-31T22:32:50.522505"
+      "timestamp": "2025-11-03T19:10:57.307506"
     },
     {
       "user_id": 4,
@@ -562,9 +522,7 @@
         "tłuszcze",
         "egzotyczne"
       ],
-      "age": 22,
-      "gender": "M",
-      "timestamp": "2025-11-04T22:32:50.522505"
+      "timestamp": "2025-11-07T19:10:57.307506"
     },
     {
       "user_id": 5,
@@ -588,9 +546,7 @@
         "wędliny",
         "białko"
       ],
-      "age": 24,
-      "gender": "M",
-      "timestamp": "2025-10-23T22:32:50.522505"
+      "timestamp": "2025-10-26T19:10:57.307506"
     },
     {
       "user_id": 5,
@@ -616,9 +572,7 @@
         "słodycze",
         "mrożonki"
       ],
-      "age": 24,
-      "gender": "M",
-      "timestamp": "2025-10-26T22:32:50.522505"
+      "timestamp": "2025-10-29T19:10:57.307506"
     },
     {
       "user_id": 5,
@@ -640,9 +594,7 @@
         "wędliny",
         "białko"
       ],
-      "age": 24,
-      "gender": "M",
-      "timestamp": "2025-10-29T22:32:50.522505"
+      "timestamp": "2025-11-01T19:10:57.307506"
     },
     {
       "user_id": 5,
@@ -666,9 +618,7 @@
         "warzywa",
         "przyprawy"
       ],
-      "age": 24,
-      "gender": "M",
-      "timestamp": "2025-11-01T22:32:50.522505"
+      "timestamp": "2025-11-04T19:10:57.307506"
     },
     {
       "user_id": 5,
@@ -694,9 +644,7 @@
         "napoje",
         "soki"
       ],
-      "age": 24,
-      "gender": "M",
-      "timestamp": "2025-11-04T22:32:50.522505"
+      "timestamp": "2025-11-07T19:10:57.307506"
     },
     {
       "user_id": 6,
@@ -722,9 +670,7 @@
         "przyprawy",
         "podstawowe"
       ],
-      "age": 26,
-      "gender": "M",
-      "timestamp": "2025-10-24T22:32:50.522505"
+      "timestamp": "2025-10-27T19:10:57.307506"
     },
     {
       "user_id": 6,
@@ -750,9 +696,7 @@
         "owoce",
         "przyprawy"
       ],
-      "age": 26,
-      "gender": "M",
-      "timestamp": "2025-10-26T22:32:50.522505"
+      "timestamp": "2025-10-29T19:10:57.307506"
     },
     {
       "user_id": 6,
@@ -778,9 +722,7 @@
         "przyprawy",
         "podstawowe"
       ],
-      "age": 26,
-      "gender": "M",
-      "timestamp": "2025-10-28T22:32:50.522505"
+      "timestamp": "2025-10-31T19:10:57.307506"
     },
     {
       "user_id": 6,
@@ -806,9 +748,7 @@
         "nabiał",
         "przekąski"
       ],
-      "age": 26,
-      "gender": "M",
-      "timestamp": "2025-10-31T22:32:50.522505"
+      "timestamp": "2025-11-03T19:10:57.307506"
     },
     {
       "user_id": 6,
@@ -834,9 +774,7 @@
         "nabiał",
         "tłuszcze"
       ],
-      "age": 26,
-      "gender": "M",
-      "timestamp": "2025-11-03T22:32:50.522505"
+      "timestamp": "2025-11-06T19:10:57.307506"
     },
     {
       "user_id": 7,
@@ -862,9 +800,7 @@
         "słodycze",
         "śniadaniowe"
       ],
-      "age": 68,
-      "gender": "K",
-      "timestamp": "2025-10-22T22:32:50.522505"
+      "timestamp": "2025-10-25T19:10:57.307506"
     },
     {
       "user_id": 7,
@@ -887,9 +823,7 @@
         "podstawowe",
         "białko"
       ],
-      "age": 68,
-      "gender": "K",
-      "timestamp": "2025-10-25T22:32:50.522505"
+      "timestamp": "2025-10-28T19:10:57.307506"
     },
     {
       "user_id": 7,
@@ -910,9 +844,7 @@
         "nabiał",
         "tłuszcze"
       ],
-      "age": 68,
-      "gender": "K",
-      "timestamp": "2025-10-28T22:32:50.522505"
+      "timestamp": "2025-10-31T19:10:57.307506"
     },
     {
       "user_id": 7,
@@ -933,9 +865,7 @@
         "pieczenie",
         "słodycze"
       ],
-      "age": 68,
-      "gender": "K",
-      "timestamp": "2025-10-31T22:32:50.522505"
+      "timestamp": "2025-11-03T19:10:57.307506"
     },
     {
       "user_id": 7,
@@ -958,9 +888,7 @@
         "tłuszcze",
         "podstawowe"
       ],
-      "age": 68,
-      "gender": "K",
-      "timestamp": "2025-11-04T22:32:50.522505"
+      "timestamp": "2025-11-07T19:10:57.307506"
     },
     {
       "user_id": 8,
@@ -982,9 +910,7 @@
         "alkohol",
         "napoje"
       ],
-      "age": 65,
-      "gender": "M",
-      "timestamp": "2025-10-23T22:32:50.522505"
+      "timestamp": "2025-10-26T19:10:57.307506"
     },
     {
       "user_id": 8,
@@ -1005,9 +931,7 @@
         "pieczywo",
         "podstawowe"
       ],
-      "age": 65,
-      "gender": "M",
-      "timestamp": "2025-10-26T22:32:50.522505"
+      "timestamp": "2025-10-29T19:10:57.307506"
     },
     {
       "user_id": 8,
@@ -1031,9 +955,7 @@
         "alkohol",
         "napoje"
       ],
-      "age": 65,
-      "gender": "M",
-      "timestamp": "2025-10-29T22:32:50.522505"
+      "timestamp": "2025-11-01T19:10:57.307506"
     },
     {
       "user_id": 8,
@@ -1054,9 +976,7 @@
         "pieczywo",
         "podstawowe"
       ],
-      "age": 65,
-      "gender": "M",
-      "timestamp": "2025-11-01T22:32:50.522505"
+      "timestamp": "2025-11-04T19:10:57.307506"
     },
     {
       "user_id": 8,
@@ -1079,9 +999,7 @@
         "słodycze",
         "zdrowa_żywność"
       ],
-      "age": 65,
-      "gender": "M",
-      "timestamp": "2025-11-04T22:32:50.522505"
+      "timestamp": "2025-11-07T19:10:57.307506"
     },
     {
       "user_id": 9,
@@ -1117,9 +1035,7 @@
         "owoce",
         "świeże"
       ],
-      "age": 35,
-      "gender": "K",
-      "timestamp": "2025-10-24T22:32:50.522505"
+      "timestamp": "2025-10-27T19:10:57.307506"
     },
     {
       "user_id": 9,
@@ -1145,9 +1061,7 @@
         "zdrowe_przekąski",
         "białko"
       ],
-      "age": 35,
-      "gender": "K",
-      "timestamp": "2025-10-27T22:32:50.522505"
+      "timestamp": "2025-10-30T19:10:57.307506"
     },
     {
       "user_id": 9,
@@ -1173,9 +1087,7 @@
         "przyprawy",
         "zioła"
       ],
-      "age": 35,
-      "gender": "K",
-      "timestamp": "2025-10-29T22:32:50.522505"
+      "timestamp": "2025-11-01T19:10:57.307506"
     },
     {
       "user_id": 9,
@@ -1199,9 +1111,7 @@
         "warzywa",
         "świeże"
       ],
-      "age": 35,
-      "gender": "K",
-      "timestamp": "2025-11-01T22:32:50.522505"
+      "timestamp": "2025-11-04T19:10:57.307506"
     },
     {
       "user_id": 9,
@@ -1224,9 +1134,7 @@
         "pieczywo",
         "podstawowe"
       ],
-      "age": 35,
-      "gender": "K",
-      "timestamp": "2025-11-04T22:32:50.522505"
+      "timestamp": "2025-11-07T19:10:57.307506"
     },
     {
       "user_id": 10,
@@ -1258,9 +1166,7 @@
         "zdrowe_przekąski",
         "białko"
       ],
-      "age": 38,
-      "gender": "M",
-      "timestamp": "2025-10-22T22:32:50.522505"
+      "timestamp": "2025-10-25T19:10:57.307506"
     },
     {
       "user_id": 10,
@@ -1283,9 +1189,7 @@
         "nabiał",
         "zdrowa_żywność"
       ],
-      "age": 38,
-      "gender": "M",
-      "timestamp": "2025-10-25T22:32:50.522505"
+      "timestamp": "2025-10-28T19:10:57.307506"
     },
     {
       "user_id": 10,
@@ -1311,9 +1215,7 @@
         "podstawowe",
         "węglowodany"
       ],
-      "age": 38,
-      "gender": "M",
-      "timestamp": "2025-10-28T22:32:50.522505"
+      "timestamp": "2025-10-31T19:10:57.307506"
     },
     {
       "user_id": 10,
@@ -1337,9 +1239,7 @@
         "nabiał",
         "dodatki"
       ],
-      "age": 38,
-      "gender": "M",
-      "timestamp": "2025-10-31T22:32:50.522505"
+      "timestamp": "2025-11-03T19:10:57.307506"
     },
     {
       "user_id": 10,
@@ -1363,14 +1263,12 @@
         "pieczywo",
         "śniadaniowe"
       ],
-      "age": 38,
-      "gender": "M",
-      "timestamp": "2025-11-03T22:32:50.522505"
+      "timestamp": "2025-11-06T19:10:57.307506"
     }
   ],
   "metadata": {
     "total_sessions": 51,
     "unique_users": 10,
-    "generated_at": "2025-11-05T22:32:50.522505"
+    "generated_at": "2025-11-08T19:10:57.307506"
   }
 }

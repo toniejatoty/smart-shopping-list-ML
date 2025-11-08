@@ -25,10 +25,8 @@ class LSTMRecommender(nn.Module):
         self.timestamp_dim = product_embedding_dim // 4
         self.timestamp = nn.Linear(1, self.timestamp_dim)
         
-        self.user_features_dim = product_embedding_dim // 4
-        self.user_features_fc = nn.Linear(2, self.user_features_dim)
 
-        input_dim = self.product_embedding.embedding_dim + self.category_embedding_dim + self.timestamp_dim + self.user_features_dim
+        input_dim = self.product_embedding.embedding_dim + self.category_embedding_dim + self.timestamp_dim 
         self.lstm = nn.LSTM(input_dim, hidden_dim, num_layers,
                            batch_first=True, dropout=dropout)
         
@@ -36,15 +34,10 @@ class LSTMRecommender(nn.Module):
         self.fc1 = nn.Linear(hidden_dim, hidden_dim // 2)
         self.fc2 = nn.Linear(hidden_dim // 2, num_products+1 )
     
-    def forward(self, product_input, categories_input, user_age_input, user_timestamps_input, user_gender_input):
+    def forward(self, product_input, categories_input, user_timestamps_input):
         device = self.product_embedding.weight.device
         
         batch_sequences = []
-        
-        user_features = torch.stack([user_age_input, user_gender_input], dim=1).float().to(device)
-        user_features_embed = self.user_features_fc(user_features) 
-
-
         for i, (user_products, user_categories, user_timestamps) in enumerate(zip(product_input, categories_input, user_timestamps_input)):
             user_embeddings = []
             
@@ -64,8 +57,7 @@ class LSTMRecommender(nn.Module):
                 combined_embed = torch.cat([
                 product_embed,           
                 category_embed,          
-                timestamp_embed,         
-                user_features_embed[i]   ], dim=0)
+                timestamp_embed, ], dim=0)
                 
                 user_embeddings.append(combined_embed)
             
@@ -95,10 +87,8 @@ class ProductSequenceDataset(Dataset):
         self.input_basket_products_sequences = []  
         self.input_basket_categories_sequences = []
         self.target_baskets = []          
-        self.target_vectors = []          
-        self.user_ages = []               
+        self.target_vectors = []                     
         self.user_timestamps = []         
-        self.user_gender = []
         self._prepare_sequences()
     
     def _prepare_sequences(self):
@@ -111,8 +101,6 @@ class ProductSequenceDataset(Dataset):
                 input_categories = list(user_data['categories'].iloc[seq_start:seq_start + self.sequence_length])
                 target_basket = list(user_data['products'].iloc[seq_start + self.sequence_length])
                 
-                user_age = user_data['age'].values[0]
-                user_gender = user_data['gender'].values[0]
                 timestamps = list(user_data['timestamp'].iloc[seq_start:seq_start + self.sequence_length ])
                 
                 
@@ -125,9 +113,7 @@ class ProductSequenceDataset(Dataset):
                 self.input_basket_categories_sequences.append(input_categories)
                 self.target_baskets.append(target_basket)  
                 self.target_vectors.append(target_vector)
-                self.user_ages.append(user_age)
                 self.user_timestamps.append(timestamps)
-                self.user_gender.append(user_gender)
 
     def __len__(self):
         return len(self.input_basket_products_sequences)
@@ -136,9 +122,7 @@ class ProductSequenceDataset(Dataset):
         return (
             self.input_basket_products_sequences[idx],  
             self.input_basket_categories_sequences[idx],
-            torch.tensor(self.user_ages[idx], dtype=torch.float),
             torch.tensor(self.user_timestamps[idx], dtype=torch.float),
-            torch.tensor(self.user_gender[idx], dtype=torch.float),
             torch.tensor(self.target_vectors[idx], dtype=torch.float)  
         )
 
@@ -157,11 +141,11 @@ def train_enhanced_model(model, dataloader, num_epochs=10, learning_rate=0.001):
         total_elements = 0
 
         for batch_idx, batch_data in enumerate(dataloader):
-            product_input, categories_input, user_age_input, user_timestamps_input, user_gender_input, target_vec = batch_data
+            product_input, categories_input, user_timestamps_input, target_vec = batch_data
             
             target_vec = target_vec.to(device)
 
-            logits, attention_weights = model(product_input, categories_input, user_age_input, user_timestamps_input, user_gender_input)
+            logits, attention_weights = model(product_input, categories_input, user_timestamps_input)
 
             optimizer.zero_grad()
             
@@ -200,15 +184,13 @@ def get_prediction(user_histories, product_processor):
         sequence_length=SEQ_LENGTH
     )
     def simple_collate_fn(batch):
-        product_input, categories_input, user_ages, user_timestamps, user_genders, target_vecs = zip(*batch)
+        product_input, categories_input, user_timestamps, target_vecs = zip(*batch)
 
         target_vec = torch.stack(target_vecs)
         return (
             product_input,    
-            categories_input,  
-            torch.stack(user_ages),       
+            categories_input,   
             user_timestamps,   
-            torch.stack(user_genders),       
             target_vec       
         )
 
@@ -233,10 +215,10 @@ def get_prediction(user_histories, product_processor):
     model.eval()
     with torch.no_grad():
         test_idx = 0
-        product_input, categories_input, user_age, user_timestamps, user_gender, target_vec = dataset[test_idx]
+        product_input, categories_input, user_timestamps, target_vec = dataset[test_idx]
         
         logits, attention_weights = model(
-            [product_input], [categories_input], user_age.unsqueeze(0), [user_timestamps], user_gender.unsqueeze(0)
+            [product_input], [categories_input], [user_timestamps]
         )
         
         probabilities = torch.sigmoid(logits)

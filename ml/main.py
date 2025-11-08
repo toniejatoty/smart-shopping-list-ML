@@ -2,23 +2,20 @@ import pytorchmodel
 import json
 from datetime import datetime
 import pandas as pd
+from pathlib import Path
 pd.set_option('display.max_columns', 20)   
 
 class ProductProcessor:
-    """Klasa zajmuje się przetworzeniem id produktu i kategorii na mniejszą liczbę. Oraz mapowanie
-     produkt na kategorie jakie ma """
     def __init__(self):
         self.product_to_id = {}
         self.id_to_product = {}
         self.category_to_id = {}
         self.id_to_category = {}
-        self.product_categories = {}  # Mapowanie product_id -> category_ids
+        self.product_categories = {}  
         self.next_product_id = 1
         self.next_category_id = 1
     def process_data(self, users_data):
-        """Przetwarza pojedynczy produkt i zwraca jego ID"""
         for i in range(len(users_data)):
-            users_data[i]['gender']=int(users_data[i]['gender']=='K')
             users_data[i]['timestamp'] = (datetime.now() - datetime.strptime(users_data[i]['timestamp'], "%Y-%m-%dT%H:%M:%S.%f")).days 
 
         for i in range(len(users_data)):
@@ -44,8 +41,11 @@ class ProductProcessor:
         return len(self.category_to_id)
 
 
+BASE_DIR = Path(__file__).resolve().parent  
+data_dir = BASE_DIR / "data"
+file_path = data_dir / "example_input.json"
 
-data = json.load(open('example_input.json', 'r', encoding='utf-8'))
+data = json.load(open(file_path, 'r', encoding='utf-8'))
 productprocessor = ProductProcessor()
 user_data = productprocessor.process_data(data['users_data'])
 user_data_df = pd.DataFrame(user_data) 
