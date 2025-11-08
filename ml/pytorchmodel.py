@@ -8,67 +8,80 @@ import torch.nn.functional as F
 
 class LSTMRecommender(nn.Module):
     def __init__(self, num_products, num_categories, product_categories, 
-                 embedding_dim=64, hidden_dim=128, sequence_length=4,
+                 product_embedding_dim=64, hidden_dim=128, sequence_length=4,
                  num_layers=2, dropout=0.3):
         super().__init__()
         self.num_products = num_products
-        self.embedding_dim = embedding_dim
+        self.embedding_dim = product_embedding_dim
         self.hidden_dim = hidden_dim
         self.sequence_length = sequence_length
         
-        # Embedding layer
-        self.product_embedding = nn.Embedding(num_products + 1, embedding_dim, padding_idx=0)
+
+        self.product_embedding = nn.Embedding(num_products + 1, product_embedding_dim, padding_idx=0)
         
-        # LSTM dla sekwencji koszyków
-        self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers, 
+        self.category_embedding_dim = product_embedding_dim // 2
+        self.category_embedding = nn.Embedding(num_categories + 1, self.category_embedding_dim, padding_idx=0)
+        
+        self.timestamp_dim = product_embedding_dim // 4
+        self.timestamp = nn.Linear(1, self.timestamp_dim)
+        
+        self.user_features_dim = product_embedding_dim // 4
+        self.user_features_fc = nn.Linear(2, self.user_features_dim)
+
+        input_dim = self.product_embedding.embedding_dim + self.category_embedding_dim + self.timestamp_dim + self.user_features_dim
+        self.lstm = nn.LSTM(input_dim, hidden_dim, num_layers,
                            batch_first=True, dropout=dropout)
         
-        # Warstwy wyjściowe
         self.dropout = nn.Dropout(dropout)
         self.fc1 = nn.Linear(hidden_dim, hidden_dim // 2)
         self.fc2 = nn.Linear(hidden_dim // 2, num_products+1 )
     
     def forward(self, product_input, categories_input, user_age_input, user_timestamps_input, user_gender_input):
-        batch_size = len(product_input)
         device = self.product_embedding.weight.device
-        
         
         batch_sequences = []
         
-        # Dla każdego usera w batchu
-        for i, user_products in enumerate(product_input):
+        user_features = torch.stack([user_age_input, user_gender_input], dim=1).float().to(device)
+        user_features_embed = self.user_features_fc(user_features) 
+
+
+        for i, (user_products, user_categories, user_timestamps) in enumerate(zip(product_input, categories_input, user_timestamps_input)):
             user_embeddings = []
             
-            # Dla każdego koszyka usera
-            for j, basket in enumerate(user_products):
+            for j, (basket,basket_categories, timestamp) in enumerate(zip(user_products, user_categories, user_timestamps)):
                 
                 product_tensor = torch.tensor(basket, dtype=torch.long, device=device)
-                
-                # Embedding produktów
                 product_embeds = self.product_embedding(product_tensor)
-                # MEAN POOLING
-                basket_embed = torch.mean(product_embeds, dim=0)
+                product_embed = torch.mean(product_embeds, dim=0)
+
+                category_tensor = torch.tensor(basket_categories, dtype=torch.long, device=device)
+                category_embeds = self.category_embedding(category_tensor)
+                category_embed = torch.mean(category_embeds, dim=0)  
+
+                timestamp_tensor = torch.tensor([timestamp], dtype=torch.float, device=device)
+                timestamp_embed = self.timestamp(timestamp_tensor)  
             
-                user_embeddings.append(basket_embed)
+                combined_embed = torch.cat([
+                product_embed,           
+                category_embed,          
+                timestamp_embed,         
+                user_features_embed[i]   ], dim=0)
+                
+                user_embeddings.append(combined_embed)
             
-            # Stack koszyków usera -> (sequence_length, embedding_dim)
             user_sequence = torch.stack(user_embeddings)
             batch_sequences.append(user_sequence)
         
-        # Stack wszystkich userów -> (batch_size, sequence_length, embedding_dim)
         baskets_tensor = torch.stack(batch_sequences)
         
-        # LSTM przetwarza sekwencje koszyków
-        lstm_out, _ = self.lstm(baskets_tensor)  # (batch_size, sequence_length, hidden_dim)
+        lstm_out, _ = self.lstm(baskets_tensor)
         
-        # Weź ostatni output z sekwencji
-        last_output = lstm_out[:, -1, :]  # (batch_size, hidden_dim)
+        last_output = lstm_out[:, -1, :]  
         
-        # Warstwy wyjściowe
         x = self.dropout(last_output)
         x = F.relu(self.fc1(x))
         x = self.dropout(x)
-        logits = self.fc2(x)  # (batch_size, num_products + 1)
+        logits = self.fc2(x)  
         
         return logits, None
 
@@ -79,12 +92,12 @@ class ProductSequenceDataset(Dataset):
         self.sequence_length = sequence_length
         self.num_products = product_processor.get_vocab_size()
         
-        self.input_basket_products_sequences = []  # Lista SEKWENCJI KOSZYKÓW
+        self.input_basket_products_sequences = []  
         self.input_basket_categories_sequences = []
-        self.target_baskets = []          # Pojedyncze koszyki target
-        self.target_vectors = []          # Wektory binarne targetów
-        self.user_ages = []               # Wiek użytkownika dla każdego przykładu
-        self.user_timestamps = []         # Timestamps dla każdego przykładu
+        self.target_baskets = []          
+        self.target_vectors = []          
+        self.user_ages = []               
+        self.user_timestamps = []         
         self.user_gender = []
         self._prepare_sequences()
     
@@ -93,7 +106,7 @@ class ProductSequenceDataset(Dataset):
             user_data = self.user_histories[self.user_histories['user_id'] == user_id]
             
             for seq_start in range(len(user_data) - self.sequence_length ):
-                # Pobierz sekwencję koszyków
+                
                 input_products = list(user_data['products'].iloc[seq_start:seq_start + self.sequence_length])
                 input_categories = list(user_data['categories'].iloc[seq_start:seq_start + self.sequence_length])
                 target_basket = list(user_data['products'].iloc[seq_start + self.sequence_length])
@@ -102,12 +115,12 @@ class ProductSequenceDataset(Dataset):
                 user_gender = user_data['gender'].values[0]
                 timestamps = list(user_data['timestamp'].iloc[seq_start:seq_start + self.sequence_length ])
                 
-                # Tworzenie wektora target
+                
                 target_vector = torch.zeros(self.num_products+1)  
                 for product_id in target_basket:
                     target_vector[product_id] = 1.0
                 
-                # Zapisz dane
+                
                 self.input_basket_products_sequences.append(input_products)
                 self.input_basket_categories_sequences.append(input_categories)
                 self.target_baskets.append(target_basket)  
@@ -120,16 +133,14 @@ class ProductSequenceDataset(Dataset):
         return len(self.input_basket_products_sequences)
     
     def __getitem__(self, idx):
-        # Zwróć pojedyncze wartości, nie listy!
         return (
-            self.input_basket_products_sequences[idx],  # pojedyncza sekwencja (lista 4 koszyków)
-            self.input_basket_categories_sequences[idx], # pojedyncza sekwencja kategorii
-            torch.tensor(self.user_ages[idx], dtype=torch.float),                        # pojedynczy wiek
-            torch.tensor(self.user_timestamps[idx], dtype=torch.float),                  # pojedyncza lista timestampów
+            self.input_basket_products_sequences[idx],  
+            self.input_basket_categories_sequences[idx],
+            torch.tensor(self.user_ages[idx], dtype=torch.float),
+            torch.tensor(self.user_timestamps[idx], dtype=torch.float),
             torch.tensor(self.user_gender[idx], dtype=torch.float),
-            torch.tensor(self.target_vectors[idx], dtype=torch.float)                    # pojedynczy target vector
+            torch.tensor(self.target_vectors[idx], dtype=torch.float)  
         )
-
 
 def train_enhanced_model(model, dataloader, num_epochs=10, learning_rate=0.001):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -154,22 +165,18 @@ def train_enhanced_model(model, dataloader, num_epochs=10, learning_rate=0.001):
 
             optimizer.zero_grad()
             
-            # LOSS - multi-label
             loss = criterion(logits, target_vec)
             
-            # BACKWARD PASS
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             optimizer.step()
             
             total_loss += loss.item()
             
-            # POPRAWNE LICZENIE ACCURACY DLA MULTI-LABEL
             with torch.no_grad():
                 probabilities = torch.sigmoid(logits)
                 predicted = (probabilities > 0.5).float()
                 
-                # Accuracy: ile produktów dobrze przewidzianych
                 correct = (predicted == target_vec).sum().item()
                 total_correct += correct
                 total_elements += target_vec.numel()
@@ -178,13 +185,11 @@ def train_enhanced_model(model, dataloader, num_epochs=10, learning_rate=0.001):
         avg_loss = total_loss / len(dataloader)
         print(f'Epoch {epoch+1} completed. Avg Loss: {avg_loss:.4f}, Accuracy: {epoch_accuracy:.4f}')
     
-
-
 def get_prediction(user_histories, product_processor):
     # Ustawienia
     SEQ_LENGTH = 4
     BATCH_SIZE = 8
-    NUM_EPOCHS = 10
+    NUM_EPOCHS = 100
 
     print(f"Liczba produktów: {product_processor.get_vocab_size()}")
     print(f"Liczba kategorii: {product_processor.get_num_categories()}")
@@ -201,13 +206,12 @@ def get_prediction(user_histories, product_processor):
         return (
             product_input,    
             categories_input,  
-            user_ages,       
+            torch.stack(user_ages),       
             user_timestamps,   
-            user_genders,       
+            torch.stack(user_genders),       
             target_vec       
         )
 
-# W get_prediction: 
     dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, collate_fn=simple_collate_fn)
 
     print(f"Utworzono {len(dataset)} przykładów treningowych")
@@ -216,7 +220,7 @@ def get_prediction(user_histories, product_processor):
         num_products=product_processor.get_vocab_size(),
         num_categories=product_processor.get_num_categories(),
         product_categories=product_processor.product_categories,
-        embedding_dim=64,
+        product_embedding_dim=64,
         hidden_dim=128,
         sequence_length=SEQ_LENGTH,
     )
@@ -225,22 +229,18 @@ def get_prediction(user_histories, product_processor):
     print("Rozpoczynanie trenowania...")
     train_enhanced_model(model, dataloader, num_epochs=NUM_EPOCHS, learning_rate=0.001)
 
-    # Przykład predykcji
     print("\n--- Przykład predykcji ---")
     model.eval()
     with torch.no_grad():
         test_idx = 0
-        # Pobierz przykładowe dane
         product_input, categories_input, user_age, user_timestamps, user_gender, target_vec = dataset[test_idx]
         
-        # Przekaż jako listy w liście (batch_size=1)
         logits, attention_weights = model(
-            [product_input], [categories_input], [user_age], [user_timestamps], [user_gender]
+            [product_input], [categories_input], user_age.unsqueeze(0), [user_timestamps], user_gender.unsqueeze(0)
         )
         
         probabilities = torch.sigmoid(logits)
         
-        # Pobieramy top 10 produktów
         top_probs, top_indices = torch.topk(probabilities, 10)
         
         print("Sekwencja wejściowa koszyków:")
