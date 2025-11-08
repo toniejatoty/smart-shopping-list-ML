@@ -1,6 +1,8 @@
 import pytorchmodel
 import json
 from datetime import datetime
+import pandas as pd
+pd.set_option('display.max_columns', 20)   
 
 class ProductProcessor:
     """Klasa zajmuje się przetworzeniem id produktu i kategorii na mniejszą liczbę. Oraz mapowanie
@@ -46,7 +48,8 @@ class ProductProcessor:
 data = json.load(open('example_input.json', 'r', encoding='utf-8'))
 productprocessor = ProductProcessor()
 user_data = productprocessor.process_data(data['users_data'])
-print(user_data)
+user_data_df = pd.DataFrame(user_data) 
 
-
-#pytorchmodel.get_prediction(user_data)
+#print(user_data_df)
+#print(user_data_df['user_id'].value_counts())
+pytorchmodel.get_prediction(user_data_df, productprocessor)
