@@ -21,6 +21,7 @@ MANIFEST
 .venv/
 venv/
 env/
+.env
 .vscode/
 .idea/
 *.swp

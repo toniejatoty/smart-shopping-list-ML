@@ -50,6 +50,6 @@ productprocessor = ProductProcessor()
 user_data = productprocessor.process_data(data['users_data'])
 user_data_df = pd.DataFrame(user_data) 
 
-#print(user_data_df)
+print(user_data_df)
 #print(user_data_df['user_id'].value_counts())
 pytorchmodel.get_prediction(user_data_df, productprocessor)
