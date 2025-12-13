@@ -13,8 +13,9 @@ class ProductProcessor:
         self.product_categories = {}  
         self.next_off_product_id = 1
         self.next_category_id = 1
+        self.max_basket_len = 0
+        self.max_cats_per_product = 0
         
-        # NOWE: Mapowanie oryginalnych ID do nazw produktów
         self.original_id_to_name = {}
         self._load_product_names()
     
@@ -41,24 +42,6 @@ class ProductProcessor:
             print(f"⚠️ Nie udało się załadować nazw produktów: {e}")
             print("Będę używać tylko ID")
     
-    def get_product_name(self, off_product_id):
-        """Pobierz nazwę produktu po ID (zarówno oryginalnym jak i wewnętrznym)"""
-        # Sprawdź czy to wewnętrzne ID (po mapowaniu)
-        if off_product_id in self.id_to_product:
-            original_id = self.id_to_product[off_product_id]
-            if original_id in self.original_id_to_name:
-                return self.original_id_to_name[original_id]
-            else:
-                return f"Product_{original_id}"
-        
-        # Sprawdź czy to oryginalne ID
-        elif off_product_id in self.original_id_to_name:
-            return self.original_id_to_name[off_product_id]
-        
-        # Jeśli nie ma mapowania
-        else:
-            return f"Product_{off_product_id}"
-    
     def _map_and_replace(self, data_series, to_id_dict, id_to_dict, next_id, is_product=True):
         """
         Zmieniona wersja: rozróżnia produkty i kategorie
@@ -71,13 +54,18 @@ class ProductProcessor:
         
         for row in data_series:
             if isinstance(row, list):
+                if is_product:
+                    self.max_basket_len = max(self.max_basket_len, len(row))
                 for item in row:
                     if isinstance(item, list) and not is_product:
+                        self.max_cats_per_product = max(self.max_cats_per_product, len(item))
                         # Dla kategorii: zbierz wszystkie elementy z listy list
                         for subitem in item:
                             if subitem is not None and str(subitem) != 'nan':
                                 all_values.add(str(subitem))
+                        
                     elif item is not None and str(item) != 'nan':
+                        #dla produktów
                         all_values.add(str(item))
         
         # 2. Tworzenie nowych mapowań
@@ -153,41 +141,47 @@ class ProductProcessor:
             is_product=False
         )
         
-        # NOWE: Zapisz mapowanie kategorii (aisle) do nazw
-        self._load_aisle_names()
+        #self._load_aisle_names()
         
         return users_data
     
-    def _load_aisle_names(self):
-        """Załaduj nazwy alejek/kategorii"""
-        try:
-            project_root = Path(__file__).parent.parent
-            aisles_file = project_root / 'prepare_data_for_model' / 'kaggle' / 'archive' / 'aisles.csv'
-            aisles_df = pd.read_csv(aisles_file)
-            
-            self.aisle_id_to_name = {}
-            for _, row in aisles_df.iterrows():
-                self.aisle_id_to_name[row['aisle_id']] = row['aisle']
-            
-            print(f"✅ Załadowano nazwy {len(self.aisle_id_to_name):,} kategorii")
-            
-        except Exception as e:
-            print(f"⚠️ Nie udało się załadować nazw kategorii: {e}")
-            self.aisle_id_to_name = {}
+    def get_product_name(self, off_product_id):
+        """Pobierz nazwę produktu po ID (zarówno oryginalnym jak i wewnętrznym)"""
+        # Sprawdź czy to wewnętrzne ID (po mapowaniu)
+        original_id = self.id_to_product[off_product_id]
+        return self.original_id_to_name[original_id]
     
-    def get_category_name(self, category_id):
-        """Pobierz nazwę kategorii po ID"""
-        # Sprawdź czy to wewnętrzne ID
-        if category_id in self.id_to_category:
-            original_id = self.id_to_category[category_id]
-            if original_id in self.aisle_id_to_name:
-                return self.aisle_id_to_name[original_id]
+
+    # def _load_aisle_names(self):
+    #     """Załaduj nazwy alejek/kategorii"""
+    #     try:
+    #         project_root = Path(__file__).parent.parent
+    #         aisles_file = project_root / 'prepare_data_for_model' / 'kaggle' / 'archive' / 'aisles.csv'
+    #         aisles_df = pd.read_csv(aisles_file)
+            
+    #         self.aisle_id_to_name = {}
+    #         for _, row in aisles_df.iterrows():
+    #             self.aisle_id_to_name[row['aisle_id']] = row['aisle']
+            
+    #         print(f"✅ Załadowano nazwy {len(self.aisle_id_to_name):,} kategorii")
+            
+    #     except Exception as e:
+    #         print(f"⚠️ Nie udało się załadować nazw kategorii: {e}")
+    #         self.aisle_id_to_name = {}
+    
+    # def get_category_name(self, category_id):
+    #     """Pobierz nazwę kategorii po ID"""
+    #     # Sprawdź czy to wewnętrzne ID
+    #     if category_id in self.id_to_category:
+    #         original_id = self.id_to_category[category_id]
+    #         if original_id in self.aisle_id_to_name:
+    #             return self.aisle_id_to_name[original_id]
         
-        # Sprawdź czy to oryginalne ID
-        elif category_id in self.aisle_id_to_name:
-            return self.aisle_id_to_name[category_id]
+    #     # Sprawdź czy to oryginalne ID
+    #     elif category_id in self.aisle_id_to_name:
+    #         return self.aisle_id_to_name[category_id]
         
-        return f"Aisle_{category_id}"
+    #     return f"Aisle_{category_id}"
     
     def get_vocab_size(self):
         return len(self.product_to_id)
@@ -211,6 +205,7 @@ if __name__ == "__main__":
         
         # Jeśli to puste
         if not x_str or x_str == '[]' or x_str == 'nan':
+            print('pusta lista')
             return []
         
         # Sprawdź czy zaczyna się od [
@@ -243,7 +238,9 @@ if __name__ == "__main__":
     productprocessor = ProductProcessor()
     user_data = productprocessor.process_data(data)
     user_data_df = pd.DataFrame(user_data) 
-    
+    print(f"\n📊 STATYSTYKI:")
+    print(f"  Maksymalna liczba produktów w koszyku: {productprocessor.max_basket_len}")
+    print(f"  Maksymalna liczba kategorii per produkt: {productprocessor.max_cats_per_product}")
     print(f"\n✅ Przetworzono {len(user_data_df):,} wierszy")
     print(f"✅ Unikalnych produktów: {productprocessor.get_vocab_size():,}")
     print(f"✅ Unikalnych kategorii: {productprocessor.get_num_categories():,}")
@@ -251,10 +248,10 @@ if __name__ == "__main__":
     # Test: Pokaż przykładowe mapowanie
     print("\n🧪 TEST MAPOWANIA NAZW:")
     test_off_product_id = 196  # Z Twoich wyników
-    test_category_id = 6   # Z Twoich wyników
+    #test_category_id = 6   # Z Twoich wyników
     
     print(f"Produkt ID {test_off_product_id}: {productprocessor.get_product_name(test_off_product_id)}")
-    print(f"Kategoria ID {test_category_id}: {productprocessor.get_category_name(test_category_id)}")
+    #print(f"Kategoria ID {test_category_id}: {productprocessor.get_category_name(test_category_id)}")
     
     print("\n" + "=" * 60)
     print("URUCHAMIANIE MODELU")

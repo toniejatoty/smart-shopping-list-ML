@@ -17,7 +17,7 @@ print("=" * 70)
 print("1. WCZYTYWANIE DANYCH")
 print("=" * 70)
 
-# Wczytaj tylko produkty Kaggle
+#Produkty Kaggle
 products = pd.read_csv(KAGGLE_DIR / "products.csv")
 print(f"✅ Kaggle products: {len(products)}")
 
@@ -60,7 +60,7 @@ def simple_product_mapper(kaggle_products, off_df, model):
     print("Creating OFF embeddings...")
     off_names = [p['original_name'] for p in off_products]
     off_embeddings = model.encode(off_names, show_progress_bar=True)
-    off_embeddings_norm = off_embeddings / np.linalg.norm(off_embeddings, axis=1, keepdims=True)
+    off_embeddings_norm = off_embeddings / np.linalg.norm(off_embeddings, axis=1, keepdims=True) # normalization becouse long product names have larger embeddings, norm 2 after this is 1
     
     # Mapuj Kaggle produkty
     product_mapping = {}
