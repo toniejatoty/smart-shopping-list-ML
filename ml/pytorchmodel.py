@@ -3,7 +3,6 @@ from functools import partial
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
 from torch.utils.data import Dataset, DataLoader
 import torch.nn.functional as F
 from sklearn.model_selection import train_test_split
@@ -11,7 +10,6 @@ from tqdm import tqdm
 import warnings
 import datetime
 from pathlib import Path
-warnings.filterwarnings('ignore')
 
 
 class LSTMRecommenderWithCategoryMean(nn.Module):
@@ -262,7 +260,6 @@ def train_model_with_categories(model, train_dataloader,
         
     return model
 
-
 def collate_fn_with_category_lists(batch, max_basket_len, max_cats_per_product):
     """Collate function dla list list kategorii - z parametrami"""
     product_input, categories_input, user_timestamps, target_vecs = zip(*batch)
@@ -318,21 +315,54 @@ def collate_fn_with_category_lists(batch, max_basket_len, max_cats_per_product):
         batch_size,
     )
 
-
+def test_model(model, test_dataloader, K, device):
+    """Testowanie modelu na danych testowych"""
+    model.eval()
+    model.to(device)
+    
+    total_hits = 0
+    total_relevant = 0
+    
+    with torch.no_grad():
+        for batch_data in tqdm(test_dataloader, desc="Testowanie"):
+            products, categories, timestamps, targets, batch_size = batch_data
+            
+            products = products.to(device)
+            categories = categories.to(device)
+            timestamps = timestamps.to(device)
+            targets = targets.to(device)
+            
+            logits = model(products, categories, timestamps, batch_size)
+            
+            # Top-K predictions
+            _, top_indices = torch.topk(logits, K, dim=1)
+            hits = torch.gather(targets, 1, top_indices).sum() # takes in batch top indices then goes to target and checks wheater there is 1 and sum
+            
+            total_hits += hits.item()
+            total_relevant += targets.sum().item()
+    
+    # Oblicz metryki
+    recall = total_hits / total_relevant if total_relevant > 0 else 0
+    
+    print(f"\n📊 WYNIKI TESTOWE:")
+    print(f"   Recall@{K}: {recall:.2%}")
+    print(f"   Trafione produkty: {total_hits:,} / {total_relevant:,}")
+    
+    return recall
 
 def get_prediction(user_histories, product_processor):
     """Główna funkcja kompatybilna z twoim kodem"""
-    SEQ_LENGTH = 2#8
-    BATCH_SIZE = 64#4096
-    NUM_EPOCHS = 1#5
+    SEQ_LENGTH = 8
+    BATCH_SIZE = 1024
+    NUM_EPOCHS = 7
     K = 10
-    PRODUCT_EMBEDDING_DIM = 1#128
-    CATEGORY_EMBEDDING_DIM =1 #64
-    HIDDEN_DIM = 1 #128
-    NUM_LAYERS = 1 #5
+    PRODUCT_EMBEDDING_DIM = 128
+    CATEGORY_EMBEDDING_DIM =64
+    HIDDEN_DIM = 128
+    NUM_LAYERS = 5
     DROPOUT = 0.3
     LEARNING_RATE = 0.001
-    TIMESTAMP_EMBEDDING_DIM = 1#8
+    TIMESTAMP_EMBEDDING_DIM = 8
 
 
     MAX_BASKET_LEN = product_processor.max_basket_len
@@ -343,10 +373,21 @@ def get_prediction(user_histories, product_processor):
     print("=" * 60)
     
     # Stwórz dataset
-    print("\nTworzenie datasetu...")
-    train_dataset = ProductSequenceDatasetWithCategories(user_histories, product_processor, sequence_length=SEQ_LENGTH)
-    num_categories = product_processor.get_num_categories()
+    print("\nTworzenie datasetów...")
+    user_ids = user_histories['user_id'].unique()
+    train_user_ids, test_user_ids = train_test_split(user_ids, test_size=0.2, random_state=42)
     
+    train_data = user_histories[user_histories['user_id'].isin(train_user_ids)]
+    test_data = user_histories[user_histories['user_id'].isin(test_user_ids)]
+    print(f"  Train: {len(train_data):,} wierszy ({len(train_user_ids)} użytkowników)")
+    print(f"  Test: {len(test_data):,} wierszy ({len(test_user_ids)} użytkowników)")    
+    
+    print("\n📚 TWORZENIE DATASETU TRENINGOWEGO...")
+    train_dataset = ProductSequenceDatasetWithCategories(train_data, product_processor, sequence_length=SEQ_LENGTH)
+    print("\n🧪 TWORZENIE DATASETU TESTOWEGO...")
+    test_dataset = ProductSequenceDatasetWithCategories(test_data, product_processor, sequence_length=SEQ_LENGTH)    
+    
+    num_categories = product_processor.get_num_categories()
     print(f"  Liczba produktów: {train_dataset.num_products}")
     print(f"  Liczba kategorii: {num_categories}")
     print(f"  Utworzono {len(train_dataset):,} sekwencji")
@@ -360,9 +401,15 @@ def get_prediction(user_histories, product_processor):
     train_dataloader = DataLoader(
         train_dataset, 
         batch_size=BATCH_SIZE, 
-        shuffle=True ,
+        shuffle=True,
         collate_fn=collate_fn
     )
+    test_dataloader = DataLoader(
+        test_dataset,
+        batch_size=BATCH_SIZE,
+        shuffle=False,
+        collate_fn=collate_fn
+)
     
     # Inicjalizuj model
     print("\nInicjalizacja modelu...")
@@ -392,12 +439,18 @@ def get_prediction(user_histories, product_processor):
         learning_rate=LEARNING_RATE,
         K=K
     )
-    
+    print("\n" + "=" * 60)
+    print("TESTOWANIE NA ZBIORZE TESTOWYM")
+    print("=" * 60)
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    test_recall = test_model(trained_model, test_dataloader, K, device)
+
     # Zapisz model
     models_dir = Path(__file__).parent / "saved_models"
     models_dir.mkdir(exist_ok=True)
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    model_filename = f"lstm_with_categories_{timestamp}.pth"
+    recall_str = f"{test_recall:.3f}"[2:]
+    model_filename = f"lstm_cat_{timestamp}_rec{recall_str}.pth"
     model_path = models_dir / model_filename
     
     torch.save({
@@ -412,9 +465,11 @@ def get_prediction(user_histories, product_processor):
             'sequence_length': SEQ_LENGTH,
             'num_layers': NUM_LAYERS,
             'dropout': DROPOUT
-        }
+        },
+        'test_recall': test_recall
     }, model_path)
     
     print(f"\n✅ Model zapisany w: {model_path}")
+    print(f"✅ Recall@{K} na testowym: {test_recall:.2%}")
     
     return trained_model
