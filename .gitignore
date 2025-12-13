@@ -30,3 +30,6 @@ backups/
 *.tar
 *.tar.gz
 *.mongodump
+ml/data/*
+ml/saved_models/*
+prepare_data_for_model/*.csv
