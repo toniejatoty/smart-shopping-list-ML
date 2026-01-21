@@ -2,6 +2,7 @@ import pytorchmodel
 import pandas as pd
 from pathlib import Path
 import ast
+import pickle
 pd.set_option('display.max_columns', 20)   
 
 class ProductProcessor:
@@ -188,13 +189,82 @@ class ProductProcessor:
     
     def get_num_categories(self):
         return len(self.category_to_id)
+    
+    def save_processed_data(self, data_df, output_dir):
+        """Zapisz przetworzone dane + wszystkie mapowania do plików"""
+        output_dir = Path(output_dir)
+        
+        # 1. Zapisz DataFrame jako pickle (szybsze niż CSV dla list)
+        data_path = output_dir / 'processed_data.pkl'
+        data_df.to_pickle(data_path)
+        print(f"✅ Zapisano dane: {data_path}")
+        
+        # 2. Zapisz wszystkie mapowania i metadane
+        mappings = {
+            'product_to_id': self.product_to_id,
+            'id_to_product': self.id_to_product,
+            'category_to_id': self.category_to_id,
+            'id_to_category': self.id_to_category,
+            'product_categories': self.product_categories,
+            'original_id_to_name': self.original_id_to_name,
+            'next_off_product_id': self.next_off_product_id,
+            'next_category_id': self.next_category_id,
+            'max_basket_len': self.max_basket_len,
+            'max_cats_per_product': self.max_cats_per_product
+        }
+        
+        mappings_path = output_dir / 'mappings.pkl'
+        with open(mappings_path, 'wb') as f:
+            pickle.dump(mappings, f)
+        print(f"✅ Zapisano mapowania: {mappings_path}")
+        
+        # 3. Zapisz też jako CSV dla ludzkiej czytelności (opcjonalnie)
+        csv_path = output_dir / 'processed_data.csv'
+        data_df.to_csv(csv_path, index=False)
+        print(f"✅ Zapisano CSV: {csv_path}")
+        
+        print(f"\n📦 Zapisano wszystko w: {output_dir}")
+    
+    def load_processed_data(self, input_dir):
+        """Wczytaj przetworzone dane + wszystkie mapowania"""
+        input_dir = Path(input_dir)
+        
+        # 1. Wczytaj mapowania
+        mappings_path = input_dir / 'mappings.pkl'
+        with open(mappings_path, 'rb') as f:
+            mappings = pickle.load(f)
+        
+        self.product_to_id = mappings['product_to_id']
+        self.id_to_product = mappings['id_to_product']
+        self.category_to_id = mappings['category_to_id']
+        self.id_to_category = mappings['id_to_category']
+        self.product_categories = mappings['product_categories']
+        self.original_id_to_name = mappings['original_id_to_name']
+        self.next_off_product_id = mappings['next_off_product_id']
+        self.next_category_id = mappings['next_category_id']
+        self.max_basket_len = mappings['max_basket_len']
+        self.max_cats_per_product = mappings['max_cats_per_product']
+        
+        print(f"✅ Wczytano mapowania z: {mappings_path}")
+        
+        # 2. Wczytaj DataFrame
+        data_path = input_dir / 'processed_data.pkl'
+        data_df = pd.read_pickle(data_path)
+        print(f"✅ Wczytano dane: {data_path}")
+        
+        return data_df
 
 
 # GŁÓWNY KOD
 if __name__ == "__main__":
     BASE_DIR = Path(__file__).resolve().parent  
     data_dir = BASE_DIR / "data"
+    processed_dir = data_dir / "processed"  # Folder na przetworzone dane
     file_path = data_dir / "kaggle_prepared.csv"
+    
+    # Sprawdź czy są już przetworzone dane
+    USE_CACHED = True  # Zmień na False żeby przetwarzać od nowa
+    cached_data_exists = (processed_dir / 'processed_data.pkl').exists()
     
     def safe_literal_eval(x):
         """Bezpieczna konwersja stringa na listę"""
@@ -226,24 +296,45 @@ if __name__ == "__main__":
             # Zwykły string
             return [x_str]
 
-    data = pd.read_csv(file_path, converters={
-        'off_product_id': safe_literal_eval,
-        'aisle_id': safe_literal_eval
-    })
-    
-    print("=" * 60)
-    print("ŁADOWANIE DANYCH I MAPOWANIE NAZW")
-    print("=" * 60)
-    
     productprocessor = ProductProcessor()
-    user_data = productprocessor.process_data(data)
-    user_data_df = pd.DataFrame(user_data) 
-    print(f"\n📊 STATYSTYKI:")
-    print(f"  Maksymalna liczba produktów w koszyku: {productprocessor.max_basket_len}")
-    print(f"  Maksymalna liczba kategorii per produkt: {productprocessor.max_cats_per_product}")
-    print(f"\n✅ Przetworzono {len(user_data_df):,} wierszy")
-    print(f"✅ Unikalnych produktów: {productprocessor.get_vocab_size():,}")
-    print(f"✅ Unikalnych kategorii: {productprocessor.get_num_categories():,}")
+    
+    if USE_CACHED and cached_data_exists:
+        print("=" * 60)
+        print("WCZYTYWANIE PRZETWORZONYCH DANYCH Z CACHE")
+        print("=" * 60)
+        
+        user_data_df = productprocessor.load_processed_data(processed_dir)
+        
+        print(f"\n📊 STATYSTYKI:")
+        print(f"  Maksymalna liczba produktów w koszyku: {productprocessor.max_basket_len}")
+        print(f"  Maksymalna liczba kategorii per produkt: {productprocessor.max_cats_per_product}")
+        print(f"\n✅ Wczytano {len(user_data_df):,} wierszy")
+        print(f"✅ Unikalnych produktów: {productprocessor.get_vocab_size():,}")
+        print(f"✅ Unikalnych kategorii: {productprocessor.get_num_categories():,}")
+    
+    else:
+        print("=" * 60)
+        print("PRZETWARZANIE DANYCH OD NOWA")
+        print("=" * 60)
+        
+        data = pd.read_csv(file_path, converters={
+            'off_product_id': safe_literal_eval,
+            'aisle_id': safe_literal_eval
+        })
+        
+        user_data = productprocessor.process_data(data)
+        user_data_df = pd.DataFrame(user_data) 
+        
+        print(f"\n📊 STATYSTYKI:")
+        print(f"  Maksymalna liczba produktów w koszyku: {productprocessor.max_basket_len}")
+        print(f"  Maksymalna liczba kategorii per produkt: {productprocessor.max_cats_per_product}")
+        print(f"\n✅ Przetworzono {len(user_data_df):,} wierszy")
+        print(f"✅ Unikalnych produktów: {productprocessor.get_vocab_size():,}")
+        print(f"✅ Unikalnych kategorii: {productprocessor.get_num_categories():,}")
+        
+        # ZAPISZ przetworzone dane
+        productprocessor.save_processed_data(user_data_df, processed_dir)
+        print("\n💾 Następnym razem ustaw USE_CACHED=True żeby wczytać z cache")
     
     # Test: Pokaż przykładowe mapowanie
     print("\n🧪 TEST MAPOWANIA NAZW:")
