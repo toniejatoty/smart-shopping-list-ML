@@ -21,6 +21,7 @@ MANIFEST
 .venv/
 venv/
 env/
+.env
 .vscode/
 .idea/
 *.swp
@@ -29,3 +30,8 @@ backups/
 *.tar
 *.tar.gz
 *.mongodump
+ml/data/*
+ml/saved_models/*
+prepare_data_for_model/*.csv
+prepare_data_for_model/kaggle/*.csv
+prepare_data_for_model/kaggle/archive/*.csv

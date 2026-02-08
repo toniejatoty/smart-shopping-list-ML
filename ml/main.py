@@ -1,55 +1,23 @@
-import pytorchmodel
-import json
-from datetime import datetime
 import pandas as pd
+import ast
 from pathlib import Path
-pd.set_option('display.max_columns', 20)   
+import prepare_data_mapping_name_id
 
-class ProductProcessor:
-    def __init__(self):
-        self.product_to_id = {}
-        self.id_to_product = {}
-        self.category_to_id = {}
-        self.id_to_category = {}
-        self.product_categories = {}  
-        self.next_product_id = 1
-        self.next_category_id = 1
-    def process_data(self, users_data):
-        for i in range(len(users_data)):
-            users_data[i]['timestamp'] = (datetime.now() - datetime.strptime(users_data[i]['timestamp'], "%Y-%m-%dT%H:%M:%S.%f")).days 
+project_root = Path(__file__).parent.parent
+model_input_path = project_root / "ml" / "data" / "model_input.csv"
 
-        for i in range(len(users_data)):
-            for j in range(len(users_data[i]['products'])):
-                if users_data[i]['products'][j] not in self.product_to_id:
-                    self.product_to_id[users_data[i]['products'][j]] = self.next_product_id
-                    self.id_to_product[self.next_product_id] = users_data[i]['products'][j]
-                    self.next_product_id += 1
-                users_data[i]['products'][j] = self.product_to_id[users_data[i]['products'][j]]
-            for j in range(len(users_data[i]['categories'])):
-                if users_data[i]['categories'][j] not in self.category_to_id:
-                    self.category_to_id[users_data[i]['categories'][j]] = self.next_category_id
-                    self.id_to_category[self.next_category_id] = users_data[i]['categories'][j]
-                    self.next_category_id += 1
-                users_data[i]['categories'][j] = self.category_to_id[users_data[i]['categories'][j]]
-        
-        
-        return users_data
-    def get_vocab_size(self):
-        return len(self.product_to_id)
+if model_input_path.exists():
+    print("Wczytywanie df z pliku")
+    df = pd.read_csv(model_input_path)
+
+    df['off_product_id'] = df['off_product_id'].apply(ast.literal_eval)
+    df['mapped_categories'] = df['mapped_categories'].apply(ast.literal_eval)
+else:
+    print("Plik nie istnieje. Rozpoczynam mapowanie...")
+    kaggle_processed = pd.read_csv(project_root / "ml" / "data" / "kaggle_prepared.csv")
+    off_data = pd.read_csv(project_root / "ml" / "data" / "OpenFoodData.csv")
     
-    def get_num_categories(self):
-        return len(self.category_to_id)
-
-
-BASE_DIR = Path(__file__).resolve().parent  
-data_dir = BASE_DIR / "data"
-file_path = data_dir / "example_input.json"
-
-data = json.load(open(file_path, 'r', encoding='utf-8'))
-productprocessor = ProductProcessor()
-user_data = productprocessor.process_data(data['users_data'])
-user_data_df = pd.DataFrame(user_data) 
-
-#print(user_data_df)
-#print(user_data_df['user_id'].value_counts())
-pytorchmodel.get_prediction(user_data_df, productprocessor)
+    p_mapped, c_mapped, product_map, category_map = prepare_data_mapping_name_id.map_products_and_categories(kaggle_processed, off_data)
+    df = prepare_data_mapping_name_id.make_model_input_dataframe(kaggle_processed, p_mapped, c_mapped)
+    
+    df.to_csv(model_input_path, index=False)

@@ -1,0 +1,4 @@
+Weight system now is 50k * /10 becouse in kaggle i have 50k product mean is 10 per basket. This preserve from model deciding to give as result only 0.0 probability to all products
+Probably higher embedding dim becouse in kaggle there are 120 unique categories in OFF we have much more
+Change timestamp becouse for now it points days between b1<->b2  b2<->b3 and so on. On meeting we decided that timestamp are poining days from first purchase
+for example in kaggle_prepared.csv id = 312652 is empty
