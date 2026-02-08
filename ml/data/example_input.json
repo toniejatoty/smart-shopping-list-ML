@@ -1,0 +1,1274 @@
+{
+  "users_data": [
+    {
+      "user_id": 1,
+      "products": [
+        "mleko",
+        "chleb",
+        "masło",
+        "jogurt_owocowy",
+        "pampersy",
+        "banany"
+      ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "nabiał",
+        "tłuszcze",
+        "nabiał",
+        "słodycze",
+        "dzieci",
+        "higiena",
+        "owoce",
+        "świeże"
+      ],
+      "timestamp": "2025-10-25T19:10:57.307506"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "jajka",
+        "banany",
+        "pampersy",
+        "chusteczki_nawilżane",
+        "mydło"
+      ],
+      "categories": [
+        "podstawowe",
+        "białko",
+        "owoce",
+        "świeże",
+        "dzieci",
+        "higiena",
+        "dzieci",
+        "higiena",
+        "higiena",
+        "podstawowe"
+      ],
+      "timestamp": "2025-10-27T19:10:57.307506"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "mleko",
+        "chleb",
+        "masło",
+        "jogurt_owocowy",
+        "sok_jabłkowy",
+        "biszkopty"
+      ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "nabiał",
+        "tłuszcze",
+        "nabiał",
+        "słodycze",
+        "napoje",
+        "soki",
+        "słodycze",
+        "przekąski"
+      ],
+      "timestamp": "2025-10-29T19:10:57.307506"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "ser_żółty",
+        "wędlina_drobiowa",
+        "pomidory",
+        "ogórki",
+        "jabłka",
+        "herbatniki"
+      ],
+      "categories": [
+        "wędliny",
+        "białko",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "owoce",
+        "świeże",
+        "słodycze",
+        "przekąski"
+      ],
+      "timestamp": "2025-11-01T19:10:57.307506"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "mleko",
+        "płatki_śniadaniowe",
+        "kakao",
+        "jogurt_naturalny",
+        "gruszki",
+        "chusteczki"
+      ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "śniadaniowe",
+        "węglowodany",
+        "nabiał",
+        "zdrowa_żywność",
+        "owoce",
+        "świeże",
+        "higiena",
+        "podstawowe"
+      ],
+      "timestamp": "2025-11-05T19:10:57.307506"
+    },
+    {
+      "user_id": 1,
+      "products": [
+        "mąka",
+        "cukier",
+        "jajka",
+        "olej",
+        "drożdże",
+        "rodzynki",
+        "wanilia"
+      ],
+      "categories": [
+        "podstawowe",
+        "pieczenie",
+        "słodycze",
+        "podstawowe",
+        "podstawowe",
+        "białko",
+        "tłuszcze",
+        "podstawowe",
+        "pieczenie",
+        "podstawowe",
+        "pieczenie",
+        "słodycze",
+        "pieczenie",
+        "przyprawy"
+      ],
+      "timestamp": "2025-11-07T19:10:57.307506"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "mleko",
+        "jajka",
+        "płatki_śniadaniowe",
+        "chleb",
+        "ser_żółty",
+        "pomidory"
+      ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "podstawowe",
+        "białko",
+        "śniadaniowe",
+        "węglowodany",
+        "pieczywo",
+        "podstawowe",
+        "warzywa",
+        "świeże"
+      ],
+      "timestamp": "2025-10-26T19:10:57.307506"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "mleko",
+        "jajka",
+        "chleb",
+        "awokado",
+        "szpinak",
+        "jogurt_grecki"
+      ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "podstawowe",
+        "białko",
+        "pieczywo",
+        "podstawowe",
+        "warzywa",
+        "zdrowa_żywność",
+        "warzywa",
+        "zdrowa_żywność",
+        "nabiał",
+        "zdrowa_żywność"
+      ],
+      "timestamp": "2025-10-28T19:10:57.307506"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "ryż",
+        "kurczak",
+        "brokuły",
+        "marchewka",
+        "cebula",
+        "czosnek"
+      ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "mięso",
+        "białko",
+        "warzywa",
+        "zdrowa_żywność",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "przyprawy"
+      ],
+      "timestamp": "2025-10-30T19:10:57.307506"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "makaron",
+        "sos_pomidorowy",
+        "ser_mozzarella",
+        "bazylia",
+        "oliwa",
+        "pomidory"
+      ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "sosy",
+        "podstawowe",
+        "przyprawy",
+        "zioła",
+        "tłuszcze",
+        "zdrowa_żywność",
+        "warzywa",
+        "świeże"
+      ],
+      "timestamp": "2025-11-02T19:10:57.307506"
+    },
+    {
+      "user_id": 2,
+      "products": [
+        "mleko_migdałowe",
+        "płatki_owsiane",
+        "orzechy",
+        "miód",
+        "jagody",
+        "siemie_lniane"
+      ],
+      "categories": [
+        "napoje_roślinne",
+        "zdrowa_żywność",
+        "śniadaniowe",
+        "zdrowa_żywność",
+        "zdrowe_przekąski",
+        "białko",
+        "słodycze",
+        "zdrowa_żywność",
+        "owoce",
+        "świeże",
+        "zdrowe_przekąski",
+        "zdrowa_żywność"
+      ],
+      "timestamp": "2025-11-06T19:10:57.307506"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "mleko",
+        "chleb",
+        "wędlina_drobiowa",
+        "ser_biały",
+        "ogórki",
+        "jabłka"
+      ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "wędliny",
+        "białko",
+        "warzywa",
+        "świeże",
+        "owoce",
+        "świeże"
+      ],
+      "timestamp": "2025-10-24T19:10:57.307506"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "kurczak",
+        "ryż_basmati",
+        "curry",
+        "mleko_kokosowe",
+        "limonka",
+        "kolendra"
+      ],
+      "categories": [
+        "mięso",
+        "białko",
+        "podstawowe",
+        "węglowodany",
+        "przyprawy",
+        "egzotyczne",
+        "napoje_roślinne",
+        "egzotyczne",
+        "owoce",
+        "przyprawy",
+        "przyprawy",
+        "zioła"
+      ],
+      "timestamp": "2025-10-27T19:10:57.307506"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "ziemniaki",
+        "marchew",
+        "pietruszka",
+        "seler",
+        "wołowina",
+        "liść_laurowy"
+      ],
+      "categories": [
+        "warzywa",
+        "podstawowe",
+        "warzywa",
+        "świeże",
+        "przyprawy",
+        "zioła",
+        "mięso",
+        "białko",
+        "przyprawy",
+        "zioła"
+      ],
+      "timestamp": "2025-10-30T19:10:57.307506"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "łosoś",
+        "szparagi",
+        "cytryna",
+        "koperek",
+        "ziemniaki_młode",
+        "koper"
+      ],
+      "categories": [
+        "ryby",
+        "białko",
+        "warzywa",
+        "świeże",
+        "owoce",
+        "przyprawy",
+        "przyprawy",
+        "zioła",
+        "warzywa",
+        "świeże"
+      ],
+      "timestamp": "2025-11-02T19:10:57.307506"
+    },
+    {
+      "user_id": 3,
+      "products": [
+        "jogurt_dla_dzieci",
+        "chrupki_kukurydziane",
+        "serek_homogenizowany",
+        "mus_owocowy",
+        "biszkopty"
+      ],
+      "categories": [
+        "nabiał",
+        "dzieci",
+        "przekąski",
+        "słone",
+        "nabiał",
+        "słodycze",
+        "dzieci",
+        "jedzenie",
+        "słodycze",
+        "przekąski"
+      ],
+      "timestamp": "2025-11-06T19:10:57.307506"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "piwo",
+        "chipsy",
+        "kawa",
+        "makaron",
+        "sos_pomidorowy",
+        "parówki"
+      ],
+      "categories": [
+        "alkohol",
+        "napoje",
+        "przekąski",
+        "słone",
+        "napoje",
+        "używki",
+        "podstawowe",
+        "węglowodany",
+        "sosy",
+        "podstawowe",
+        "wędliny",
+        "fast_food"
+      ],
+      "timestamp": "2025-10-25T19:10:57.307506"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "piwo",
+        "orzeszki",
+        "paluszki",
+        "słone_przekąski",
+        "krakersy"
+      ],
+      "categories": [
+        "alkohol",
+        "napoje",
+        "zdrowe_przekąski",
+        "przekąski",
+        "przekąski",
+        "słone",
+        "przekąski",
+        "słone",
+        "przekąski",
+        "słone"
+      ],
+      "timestamp": "2025-10-28T19:10:57.307506"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "energetyk",
+        "czekolada",
+        "bułki",
+        "ser_topiony",
+        "szynka",
+        "musztarda"
+      ],
+      "categories": [
+        "napoje",
+        "używki",
+        "słodycze",
+        "przekąski",
+        "pieczywo",
+        "podstawowe",
+        "wędliny",
+        "białko",
+        "sosy",
+        "podstawowe"
+      ],
+      "timestamp": "2025-10-31T19:10:57.307506"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "mrożona_pizza",
+        "frytki",
+        "keczup",
+        "majonez",
+        "cola",
+        "lody"
+      ],
+      "categories": [
+        "mrożonki",
+        "fast_food",
+        "mrożonki",
+        "fast_food",
+        "sosy",
+        "podstawowe",
+        "sosy",
+        "podstawowe",
+        "napoje",
+        "gazowane",
+        "słodycze",
+        "mrożonki"
+      ],
+      "timestamp": "2025-11-03T19:10:57.307506"
+    },
+    {
+      "user_id": 4,
+      "products": [
+        "ryż_jaśminowy",
+        "warzywa_mrożone",
+        "sos_sojowy",
+        "imbir",
+        "czosnek",
+        "olej_sezamowy"
+      ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "mrożonki",
+        "warzywa",
+        "sosy",
+        "egzotyczne",
+        "przyprawy",
+        "egzotyczne",
+        "warzywa",
+        "przyprawy",
+        "tłuszcze",
+        "egzotyczne"
+      ],
+      "timestamp": "2025-11-07T19:10:57.307506"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "energetyk",
+        "pizza_mrożona",
+        "cola",
+        "chleb",
+        "ser_żółty",
+        "kielbasa"
+      ],
+      "categories": [
+        "napoje",
+        "używki",
+        "mrożonki",
+        "fast_food",
+        "napoje",
+        "gazowane",
+        "pieczywo",
+        "podstawowe",
+        "wędliny",
+        "białko"
+      ],
+      "timestamp": "2025-10-26T19:10:57.307506"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "burger_mrożony",
+        "frytki",
+        "keczup",
+        "majonez",
+        "cola",
+        "lody_czekoladowe"
+      ],
+      "categories": [
+        "mrożonki",
+        "fast_food",
+        "mrożonki",
+        "fast_food",
+        "sosy",
+        "podstawowe",
+        "sosy",
+        "podstawowe",
+        "napoje",
+        "gazowane",
+        "słodycze",
+        "mrożonki"
+      ],
+      "timestamp": "2025-10-29T19:10:57.307506"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "piwo_craft",
+        "ser_camembert",
+        "oliwki",
+        "bagietka",
+        "winogrona",
+        "szynka"
+      ],
+      "categories": [
+        "alkohol",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "owoce",
+        "świeże",
+        "wędliny",
+        "białko"
+      ],
+      "timestamp": "2025-11-01T19:10:57.307506"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "makaron_penne",
+        "boczek",
+        "śmietana",
+        "pieczarki",
+        "cebula",
+        "parmezan"
+      ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "wędliny",
+        "tłuszcze",
+        "nabiał",
+        "dodatki",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "przyprawy"
+      ],
+      "timestamp": "2025-11-04T19:10:57.307506"
+    },
+    {
+      "user_id": 5,
+      "products": [
+        "jajka",
+        "bekon",
+        "tosty",
+        "awokado",
+        "pomidory",
+        "sok_pomarańczowy"
+      ],
+      "categories": [
+        "podstawowe",
+        "białko",
+        "wędliny",
+        "tłuszcze",
+        "pieczywo",
+        "śniadaniowe",
+        "warzywa",
+        "zdrowa_żywność",
+        "warzywa",
+        "świeże",
+        "napoje",
+        "soki"
+      ],
+      "timestamp": "2025-11-07T19:10:57.307506"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "ryż",
+        "kurczak",
+        "warzywa_mrożone",
+        "oliwa",
+        "czosnek",
+        "pieprz"
+      ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "mięso",
+        "białko",
+        "mrożonki",
+        "warzywa",
+        "tłuszcze",
+        "zdrowa_żywność",
+        "warzywa",
+        "przyprawy",
+        "przyprawy",
+        "podstawowe"
+      ],
+      "timestamp": "2025-10-27T19:10:57.307506"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "ryż",
+        "łosoś",
+        "brokuły",
+        "sos_sojowy",
+        "imbir",
+        "cytryna"
+      ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "ryby",
+        "białko",
+        "warzywa",
+        "zdrowa_żywność",
+        "sosy",
+        "egzotyczne",
+        "przyprawy",
+        "egzotyczne",
+        "owoce",
+        "przyprawy"
+      ],
+      "timestamp": "2025-10-29T19:10:57.307506"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "wołowina",
+        "ziemniaki",
+        "cebula",
+        "czosnek",
+        "papryka",
+        "przyprawy"
+      ],
+      "categories": [
+        "mięso",
+        "białko",
+        "warzywa",
+        "podstawowe",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "świeże",
+        "przyprawy",
+        "podstawowe"
+      ],
+      "timestamp": "2025-10-31T19:10:57.307506"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "tuńczyk",
+        "makaron",
+        "kukurydza",
+        "groszek",
+        "majonez",
+        "jogurt"
+      ],
+      "categories": [
+        "ryby",
+        "konserwy",
+        "podstawowe",
+        "węglowodany",
+        "warzywa",
+        "konserwy",
+        "warzywa",
+        "konserwy",
+        "sosy",
+        "podstawowe",
+        "nabiał",
+        "przekąski"
+      ],
+      "timestamp": "2025-11-03T19:10:57.307506"
+    },
+    {
+      "user_id": 6,
+      "products": [
+        "jajka",
+        "szynka",
+        "ser",
+        "pomidory",
+        "pieczarki",
+        "masło"
+      ],
+      "categories": [
+        "podstawowe",
+        "białko",
+        "wędliny",
+        "białko",
+        "nabiał",
+        "białko",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "nabiał",
+        "tłuszcze"
+      ],
+      "timestamp": "2025-11-06T19:10:57.307506"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "herbata",
+        "bułki",
+        "wafelki",
+        "cukier",
+        "margaryna",
+        "dżem"
+      ],
+      "categories": [
+        "napoje",
+        "używki",
+        "pieczywo",
+        "podstawowe",
+        "słodycze",
+        "przekąski",
+        "słodycze",
+        "podstawowe",
+        "tłuszcze",
+        "podstawowe",
+        "słodycze",
+        "śniadaniowe"
+      ],
+      "timestamp": "2025-10-25T19:10:57.307506"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "herbata_owocowa",
+        "ciastka_maślane",
+        "mleko",
+        "cukier_wanilinowy",
+        "jajka"
+      ],
+      "categories": [
+        "napoje",
+        "używki",
+        "słodycze",
+        "przekąski",
+        "nabiał",
+        "napoje",
+        "słodycze",
+        "pieczenie",
+        "podstawowe",
+        "białko"
+      ],
+      "timestamp": "2025-10-28T19:10:57.307506"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "kawa_ziarnista",
+        "mleko_3,2%",
+        "bułki_maślane",
+        "miód",
+        "masło_ekstra"
+      ],
+      "categories": [
+        "napoje",
+        "używki",
+        "pieczywo",
+        "słodycze",
+        "słodycze",
+        "zdrowa_żywność",
+        "nabiał",
+        "tłuszcze"
+      ],
+      "timestamp": "2025-10-31T19:10:57.307506"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "ryż_okrągły",
+        "mleko_do_gotowania",
+        "cukier_wanilia",
+        "cynamon",
+        "rodzynki"
+      ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "słodycze",
+        "pieczenie",
+        "przyprawy",
+        "słodkie",
+        "pieczenie",
+        "słodycze"
+      ],
+      "timestamp": "2025-11-03T19:10:57.307506"
+    },
+    {
+      "user_id": 7,
+      "products": [
+        "mąka_pszenna",
+        "proszek_do_pieczenia",
+        "cukier_puder",
+        "jajka",
+        "margaryna"
+      ],
+      "categories": [
+        "podstawowe",
+        "pieczenie",
+        "pieczenie",
+        "podstawowe",
+        "słodycze",
+        "pieczenie",
+        "podstawowe",
+        "białko",
+        "tłuszcze",
+        "podstawowe"
+      ],
+      "timestamp": "2025-11-07T19:10:57.307506"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "kawa",
+        "chleb_razowy",
+        "wędlina_wieprzowa",
+        "ser_pleśniowy",
+        "oliwki",
+        "wino_czerwone"
+      ],
+      "categories": [
+        "napoje",
+        "używki",
+        "pieczywo",
+        "zdrowa_żywność",
+        "wędliny",
+        "białko",
+        "alkohol",
+        "napoje"
+      ],
+      "timestamp": "2025-10-26T19:10:57.307506"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "ser_pleśniowy",
+        "wino_biale",
+        "winogrona",
+        "szynka_surowa",
+        "bagietka"
+      ],
+      "categories": [
+        "alkohol",
+        "napoje",
+        "owoce",
+        "świeże",
+        "wędliny",
+        "białko",
+        "pieczywo",
+        "podstawowe"
+      ],
+      "timestamp": "2025-10-29T19:10:57.307506"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "salami",
+        "ser_camembert",
+        "chleb_żytni",
+        "masło",
+        "rzodkiewka",
+        "piwo_jasne"
+      ],
+      "categories": [
+        "wędliny",
+        "przekąski",
+        "pieczywo",
+        "zdrowa_żywność",
+        "nabiał",
+        "tłuszcze",
+        "warzywa",
+        "świeże",
+        "alkohol",
+        "napoje"
+      ],
+      "timestamp": "2025-11-01T19:10:57.307506"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "wędzona_makrela",
+        "cebula",
+        "śmietana",
+        "chleb_baltonowski",
+        "koper"
+      ],
+      "categories": [
+        "ryby",
+        "przekąski",
+        "warzywa",
+        "przyprawy",
+        "nabiał",
+        "dodatki",
+        "pieczywo",
+        "podstawowe"
+      ],
+      "timestamp": "2025-11-04T19:10:57.307506"
+    },
+    {
+      "user_id": 8,
+      "products": [
+        "kawa_mielona",
+        "herbata_ceylon",
+        "ciastka_czekoladowe",
+        "mleko",
+        "cukier_brązowy"
+      ],
+      "categories": [
+        "napoje",
+        "używki",
+        "napoje",
+        "używki",
+        "słodycze",
+        "przekąski",
+        "nabiał",
+        "napoje",
+        "słodycze",
+        "zdrowa_żywność"
+      ],
+      "timestamp": "2025-11-07T19:10:57.307506"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "mleko",
+        "chleb",
+        "masło",
+        "jajka",
+        "ser_żółty",
+        "wędlina",
+        "pomidory",
+        "ogórki",
+        "jabłka",
+        "banany"
+      ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "pieczywo",
+        "podstawowe",
+        "nabiał",
+        "tłuszcze",
+        "podstawowe",
+        "białko",
+        "wędliny",
+        "białko",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "owoce",
+        "świeże",
+        "owoce",
+        "świeże"
+      ],
+      "timestamp": "2025-10-27T19:10:57.307506"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "mleko",
+        "płatki_śniadaniowe",
+        "jogurt_naturalny",
+        "miód",
+        "migdały",
+        "orzechy"
+      ],
+      "categories": [
+        "nabiał",
+        "napoje",
+        "śniadaniowe",
+        "węglowodany",
+        "nabiał",
+        "zdrowa_żywność",
+        "słodycze",
+        "zdrowa_żywność",
+        "zdrowe_przekąski",
+        "białko",
+        "zdrowe_przekąski",
+        "białko"
+      ],
+      "timestamp": "2025-10-30T19:10:57.307506"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "kurczak",
+        "ziemniaki",
+        "marchewka",
+        "cebula",
+        "pietruszka",
+        "koperek"
+      ],
+      "categories": [
+        "mięso",
+        "białko",
+        "warzywa",
+        "podstawowe",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "przyprawy",
+        "przyprawy",
+        "zioła",
+        "przyprawy",
+        "zioła"
+      ],
+      "timestamp": "2025-11-01T19:10:57.307506"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "makaron_spaghetti",
+        "sos_bolognese",
+        "ser_parmezan",
+        "sałata",
+        "pomidory",
+        "ogórki"
+      ],
+      "categories": [
+        "podstawowe",
+        "węglowodany",
+        "sosy",
+        "gotowe",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże"
+      ],
+      "timestamp": "2025-11-04T19:10:57.307506"
+    },
+    {
+      "user_id": 9,
+      "products": [
+        "jogurty_owocowe",
+        "chrupki_śniadaniowe",
+        "serek_wiejski",
+        "dżem_truskawkowy",
+        "bułki"
+      ],
+      "categories": [
+        "nabiał",
+        "słodycze",
+        "przekąski",
+        "śniadaniowe",
+        "nabiał",
+        "białko",
+        "słodycze",
+        "śniadaniowe",
+        "pieczywo",
+        "podstawowe"
+      ],
+      "timestamp": "2025-11-07T19:10:57.307506"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "mąka",
+        "cukier",
+        "jajka",
+        "mleko",
+        "olej",
+        "drożdże",
+        "czekolada",
+        "orzechy"
+      ],
+      "categories": [
+        "podstawowe",
+        "pieczenie",
+        "słodycze",
+        "podstawowe",
+        "podstawowe",
+        "białko",
+        "nabiał",
+        "napoje",
+        "tłuszcze",
+        "podstawowe",
+        "pieczenie",
+        "podstawowe",
+        "słodycze",
+        "przekąski",
+        "zdrowe_przekąski",
+        "białko"
+      ],
+      "timestamp": "2025-10-25T19:10:57.307506"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "mąka_żytnia",
+        "siemie_lniane",
+        "płatki_owsiane",
+        "miód",
+        "jogurt_naturalny"
+      ],
+      "categories": [
+        "podstawowe",
+        "zdrowa_żywność",
+        "zdrowe_przekąski",
+        "zdrowa_żywność",
+        "śniadaniowe",
+        "zdrowa_żywność",
+        "słodycze",
+        "zdrowa_żywność",
+        "nabiał",
+        "zdrowa_żywność"
+      ],
+      "timestamp": "2025-10-28T19:10:57.307506"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "wołowina",
+        "cebula",
+        "czosnek",
+        "pieczarki",
+        "śmietana_18%",
+        "makaron"
+      ],
+      "categories": [
+        "mięso",
+        "białko",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "przyprawy",
+        "warzywa",
+        "świeże",
+        "nabiał",
+        "dodatki",
+        "podstawowe",
+        "węglowodany"
+      ],
+      "timestamp": "2025-10-31T19:10:57.307506"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "łosoś",
+        "szpinak",
+        "ziemniaki",
+        "cytryna",
+        "koper",
+        "śmietana_12%"
+      ],
+      "categories": [
+        "ryby",
+        "białko",
+        "warzywa",
+        "zdrowa_żywność",
+        "warzywa",
+        "podstawowe",
+        "owoce",
+        "przyprawy",
+        "nabiał",
+        "dodatki"
+      ],
+      "timestamp": "2025-11-03T19:10:57.307506"
+    },
+    {
+      "user_id": 10,
+      "products": [
+        "jajka",
+        "bekon",
+        "pomidory",
+        "pieczarki",
+        "ser_cheddar",
+        "tosty"
+      ],
+      "categories": [
+        "podstawowe",
+        "białko",
+        "wędliny",
+        "tłuszcze",
+        "warzywa",
+        "świeże",
+        "warzywa",
+        "świeże",
+        "pieczywo",
+        "śniadaniowe"
+      ],
+      "timestamp": "2025-11-06T19:10:57.307506"
+    }
+  ],
+  "metadata": {
+    "total_sessions": 51,
+    "unique_users": 10,
+    "generated_at": "2025-11-08T19:10:57.307506"
+  }
+}
