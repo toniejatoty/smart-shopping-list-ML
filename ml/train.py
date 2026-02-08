@@ -2,7 +2,6 @@ from pathlib import Path
 import pytorchmodel
 from prepare_data_mapping_name_id import ProductProcessor
 
-
 print("=" * 70)
 print("TRAIN.PY - TRENING MODELU NA PRZETWORZONYCH DANYCH")
 print("=" * 70)
