@@ -1,0 +1,140 @@
+{
+  "model_versions": [
+    {
+      "version": "v3",
+      "created_date": "2026-02-09",
+      "model_file": "recommender_model_v3.pth",
+      "status": "completed",
+      "architecture": {
+        "type": "TransformerShoppingListRecommender",
+        "approach": "Two-Tower Retrieval (Symmetric)",
+        "embedding_dim": 256,
+        "hidden_dim": 512,
+        "num_layers": 2,
+        "sequence_length": 8,
+        "max_basket": 50,
+        "max_categories": 20,
+        "dropout": 0.2,
+        "norm_first": false,
+        "encoder": {
+          "query_tower": "TransformerEncoder (user history)",
+          "item_tower": "TransformerEncoder (products)",
+          "symmetric": true
+        }
+      },
+      "dataset": {
+        "source": "Instacart",
+        "num_products": 6743,
+        "num_categories": 1731,
+        "num_users": 206209,
+        "train_samples": 399523,
+        "val_samples": 99864,
+        "test_split": 0.2,
+        "max_samples_per_user": 5
+      },
+      "training": {
+        "loss_function": "InfoNCE (Contrastive Learning)",
+        "temperature": 0.1,
+        "optimizer": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.05,
+        "scheduler": "OneCycleLR",
+        "max_lr": 0.0004,
+        "batch_size": 128,
+        "epochs": 10,
+        "gradient_clipping": 1.0
+      },
+      "training_progress": [
+        {
+          "epoch": 1,
+          "train_loss": 2.8749,
+          "val_loss": 3.2473,
+          "model_saved": true
+        },
+        {
+          "epoch": 2,
+          "train_loss": 2.1746,
+          "val_loss": 3.0770,
+          "delta_train_pct": -24.4,
+          "delta_val_pct": -5.2,
+          "model_saved": true
+        },
+        {
+          "epoch": 3,
+          "train_loss": 1.9751,
+          "val_loss": 3.0009,
+          "delta_train_pct": -9.2,
+          "delta_val_pct": -2.5,
+          "model_saved": true
+        },
+        {
+          "epoch": 4,
+          "train_loss": 1.8325,
+          "val_loss": 2.9558,
+          "delta_train_pct": -7.2,
+          "delta_val_pct": -1.5,
+          "model_saved": true
+        },
+        {
+          "epoch": 5,
+          "train_loss": 1.7258,
+          "val_loss": 2.9322,
+          "delta_train_pct": -5.8,
+          "delta_val_pct": -0.8,
+          "model_saved": true
+        },
+        {
+          "epoch": 6,
+          "train_loss": 1.6359,
+          "val_loss": 2.9048,
+          "delta_train_pct": -5.2,
+          "delta_val_pct": -0.9,
+          "model_saved": true
+        },
+        {
+          "epoch": 7,
+          "train_loss": 1.5493,
+          "val_loss": 2.8755,
+          "delta_train_pct": -5.3,
+          "delta_val_pct": -1.0,
+          "model_saved": true
+        },
+        {
+          "epoch": 8,
+          "train_loss": 1.4716,
+          "val_loss": 2.8715,
+          "delta_train_pct": -5.0,
+          "delta_val_pct": -0.1,
+          "model_saved": true
+        },
+        {
+          "epoch": 9,
+          "train_loss": 1.4107,
+          "val_loss": 2.8628,
+          "delta_train_pct": -4.1,
+          "delta_val_pct": -0.3,
+          "model_saved": true
+        },
+        {
+          "epoch": 10,
+          "train_loss": 1.3779,
+          "val_loss": 2.8634,
+          "delta_train_pct": -2.3,
+          "delta_val_pct": 0.0,
+          "model_saved": false,
+          "note": "Val loss minimal increase (+0.02%) - training completed"
+        }
+      ],
+      "final_results": {
+        "best_epoch": 9,
+        "best_val_loss": 2.8628,
+        "final_train_loss": 1.3779,
+        "total_improvement_train": -52.1,
+        "total_improvement_val": -11.8,
+        "train_val_gap": 1.49,
+        "status": "completed",
+        "overfitting": "none"
+      }
+    }
+  ]
+}
