@@ -120,9 +120,10 @@ def main():
                 while neg_indices[b].size(0) < NUM_NEG:
                     neg_indices[b] = torch.cat([neg_indices[b], torch.randint(0, num_products, (1,), device=device)], dim=0)
 
-            neg_prods = neg_indices.unsqueeze(-1)
-            neg_cats = torch.zeros((batch_size, NUM_NEG, MAX_CAT), dtype=torch.long, device=device)
-            neg_vecs = model.encode_product(neg_prods, neg_cats)
+            flat_neg_prods = neg_indices.view(-1,1)
+            flat_neg_cats = torch.zeros((batch_size * NUM_NEG,1, MAX_CAT), dtype=torch.long, device=device)
+            flat_neg_vecs = model.encode_product(flat_neg_prods, flat_neg_cats)
+            neg_vecs = flat_neg_vecs.view(batch_size, NUM_NEG, -1)
             neg_norm = F.normalize(neg_vecs, p=2, dim=2)
 
             pos_sim = torch.sum(pred_norm * pos_norm, dim=1, keepdim=True)
@@ -159,9 +160,10 @@ def main():
 
                 batch_size = pred_norm.size(0)
                 neg_indices = torch.randint(0, num_products, (batch_size, NUM_NEG), device=device)
-                neg_prods = neg_indices.unsqueeze(-1)
-                neg_cats = torch.zeros((batch_size, NUM_NEG, MAX_CAT), dtype=torch.long, device=device)
-                neg_vecs = model.encode_product(neg_prods, neg_cats)
+                flat_neg_prods = neg_indices.view(-1,1) 
+                flat_neg_cats = torch.zeros((batch_size * NUM_NEG,1, MAX_CAT), dtype=torch.long, device=device)
+                flat_neg_vecs = model.encode_product(flat_neg_prods, flat_neg_cats)
+                neg_vecs = flat_neg_vecs.view(batch_size, NUM_NEG, -1)
                 neg_norm = F.normalize(neg_vecs, p=2, dim=2)
 
                 pos_sim = torch.sum(pred_norm * pos_norm, dim=1, keepdim=True)
