@@ -20,9 +20,6 @@ NUM_LAYERS = 2
 DROPOUT = 0.2
 BATCH_SIZE = 128
 TOP_K = 10
-TEMPERATURE = 0.1
-NUM_PRODUCTS = 6743
-NUM_CATEGORIES = 1731
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -46,6 +43,16 @@ df['off_product_id'] = df['off_product_id'].progress_apply(json.loads)
 print("Parsowanie JSON (kategorie)...")
 tqdm.pandas(desc="Kategorie")
 df['mapped_categories'] = df['mapped_categories'].progress_apply(json.loads)
+
+print("Obliczanie zakresów ID produktów i kategorii...")
+max_p = max(max(prods) for prods in tqdm(df['off_product_id'], desc="Produkty") if prods)
+NUM_PRODUCTS = int(max_p + 1)
+max_c = max(
+    max(clist) for cat_lists in tqdm(df['mapped_categories'], desc="Kategorie")
+    for clist in cat_lists if clist
+)
+NUM_CATEGORIES = int(max_c + 1)
+print(f"Liczba produktów: {NUM_PRODUCTS}, Liczba kategorii: {NUM_CATEGORIES}")
 
 print("\nGrupowanie użytkowników...")
 user_groups = [g.reset_index(drop=True) for _, g in tqdm(df.groupby('user_id'), desc="Grupowanie") if len(g) > 1]
