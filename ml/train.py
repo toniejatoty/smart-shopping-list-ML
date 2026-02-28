@@ -246,12 +246,11 @@ def main():
 
         avg_val_loss = total_val_loss / len(val_loader)
 
-        # --- Recall@K ---
         total_recall = 0.0
         num_samples = 0
         with torch.no_grad():
             all_products = torch.arange(num_products, device=device).unsqueeze(1)
-            all_cats = product_cats_tensor.unsqueeze(1)  # (num_products, 1, MAX_CAT)
+            all_cats = product_cats_tensor.unsqueeze(1)
             prod_vecs = model.encode_product(all_products, all_cats)
             prod_norm = F.normalize(prod_vecs, p=2, dim=1)
 
