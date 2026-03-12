@@ -1,12 +1,14 @@
 from google import genai
 from dotenv import load_dotenv
-from difflib import SequenceMatcher
+import numpy as np
+from sentence_transformers import SentenceTransformer
 import time
 import ast
 import re
 import pandas as pd
 from pathlib import Path
 from collections import Counter
+from difflib import SequenceMatcher
 
 _env_paths = Path(__file__).parent / ".env"
 
@@ -24,6 +26,7 @@ RATE_LIMIT_SECONDS = 2.0
 project_root = Path(__file__).parent.parent
 KAGGLE_CSV = project_root / "ml" / "data" / "kaggle_prepared.csv"
 OFF_CSV    = project_root / "prepare_data_for_model" / "OpenFoodData.csv"
+PRODUCT_CATEGORY_MODEL_PATH = project_root.parent / "product_category_model"
 
 
 def load_id_to_name(off_csv_path):
@@ -98,7 +101,6 @@ def evaluate_gemini_recommender(
     print("=" * 60)
 
     id2name = load_id_to_name(OFF_CSV)
-
     print(f"\n[DATA] Wczytywanie {KAGGLE_CSV.name} ...")
     print(f"[DATA] Plik istnieje: {KAGGLE_CSV.exists()}")
     df = pd.read_csv(KAGGLE_CSV)
