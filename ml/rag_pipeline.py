@@ -127,7 +127,6 @@ def stage2(stage1_result, csv_path=r'C:\Users\konra\Desktop\vscode\projekt_zespo
 
         if p_id in user_bought_ids:
             score += PREVIOUSLY_BOUGHT_BOOST
-            
             count = purchase_counts.get(p_id, 0)
             score += (count * FREQ_BOOST_PER_BUY)
 
@@ -143,27 +142,29 @@ def stage2(stage1_result, csv_path=r'C:\Users\konra\Desktop\vscode\projekt_zespo
     return ranked_products[:DEFAULT_CANDIDATES]
 
 def stage3(stage1_result, stage2_candidates, final_k=10):
+    counts = Counter(stage1_result['purchase_counts'])
+    top_frequent_names = [name for name, count in counts.most_common(15)]
+    
+    cache_lines = [f"- {name}" for name in top_frequent_names]
+    cache_str = "\n".join(cache_lines)
 
-    new_candidates = [p for p in stage2_candidates]
-    lines_new = "\n".join(
-            f"  ID= {p['name']} | kategorie: {', '.join(p['categories'])}"
-            for p in new_candidates
-        )
-    new_str = f"\nKandaci do uzupełnienia koszyka :\n{lines_new}\n"
-
-    intent_desc = f"{stage1_result.get('reasoning', '')}. Kategorie: {', '.join(stage1_result.get('intent_categories', []))}"
+    new_candidates = [p for p in stage2_candidates if p["name"] not in top_frequent_names]
+    
+    new_lines = [f"- {p['name']} (Kategorie: {p['categories']})" for p in new_candidates[:20]]
+    new_str = "\n".join(new_lines)
 
     prompt = (
-        "Jesteś rekomendatorem zakupów spożywczych.\n\n"
-        f"Intencja zakupowa klienta:\n  {intent_desc}\n"
-        f"{new_str}\n"
-        f"Wybierz DOKŁADNIE {final_k} produktów.\n"
-        "Zasady:\n"
-        "1. PRZEPISZ wszystkie produkty z sekcji 'KUPIONE WCZEŚNIEJ' – klient regularnie je kupuje.\n"
-        "2. Uzupełnij pozostałe miejsca produktami z sekcji 'Nowe produkty'.\n"
-        "3. Używaj wyłącznie produktów z powyższych list.\n\n"
-        "Odpowiedz WYŁĄCZNIE poprawnym JSON-em:\n"
-        '{"recommended_ids": ["produkt1", "produkt2", ...]}'
+        "Jesteś inteligentnym asystentem zakupowym.\n\n"
+        "PRODUKTY KUPOWANE REGULARNIE (Priorytet):\n"
+        f"{cache_str}\n\n"
+        "NOWE PROPOZYCJE (Uzupełnienie):\n"
+        f"{new_str}\n\n"
+        f"ZADANIE: Wybierz dokładnie {final_k} produktów do nowego koszyka.\n"
+        "ZASADY:\n"
+        "1. Wybierz najpierw produkty z listy REGULARNYCH, które pasują do aktualnych potrzeb.\n"
+        "2. Jeśli zostanie miejsce, dobierz najlepsze NOWE PROPOZYCJE.\n"
+        "3. Zwróć wyłącznie JSON z listą nazw.\n\n"
+        '{"recommended_products": ["nazwa1", "nazwa2"]}'
     )
 
     time.sleep(RATE_LIMIT_SECONDS)  
@@ -172,7 +173,6 @@ def stage3(stage1_result, stage2_candidates, final_k=10):
         contents=prompt
     )
 
-    # 5. Parsowanie wyniku
     try:
         clean_text = response.text.strip().replace("```json", "").replace("```", "")
         final_recommendations = json.loads(clean_text)
