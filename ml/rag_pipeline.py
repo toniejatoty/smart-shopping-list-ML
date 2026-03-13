@@ -17,6 +17,7 @@ FREQ_BOOST_PER_BUY = 1.5        # dodatkowy bonus za każde kolejne kupienie
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 def stage1(json_data):
+    json_data = json.loads(json_data) if isinstance(json_data, str) else json_data
     history_baskets = json_data.get("history_baskets", [])
     
     purchase_counts = Counter()
@@ -82,6 +83,10 @@ def stage1(json_data):
         "user_bought_ids": user_bought_ids,
         "purchase_counts": dict(purchase_counts)
     }
+
+    with open(os.path.join("cache", "stage1_output.json"),'w') as f:
+        json.dump(final_output, f)
+        f.write("\n")
     return final_output
 
 
@@ -141,7 +146,9 @@ def stage2(stage1_result, csv_path=r'C:\Users\konra\Desktop\vscode\projekt_zespo
     ranked_products = sorted(scores, key=lambda x: x['score'], reverse=True)
     return ranked_products[:DEFAULT_CANDIDATES]
 
-def stage3(stage1_result, stage2_candidates, final_k=10):
+def stage3(stage2_candidates, final_k=10):
+    with open(os.path.join("cache", "stage1_output.json"), 'r') as f:
+        stage1_result = json.load(f)
     counts = Counter(stage1_result['purchase_counts'])
     top_frequent_names = [name for name, count in counts.most_common(15)]
     
@@ -182,57 +189,3 @@ def stage3(stage1_result, stage2_candidates, final_k=10):
 
     return final_recommendations
 
-if __name__ == "__main__":
-    test_data = {
-        "session_id": "example-user-1",
-        "history_baskets": [
-            {
-                "products": [
-                    {"name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g", "id": "5902802802576"},
-                    {"name": "Almond Drink unsweetened – Milsa", "id": "25026290"},
-                    {"name": "Beef Jerky – Tarczyński", "id": "5908230536007"},
-                    {"name": "Popcorn – 100 g", "id": "3577060000136"},
-                    {"name": "G – Bake Rolls,7 Days – 150g", "id": "5201360655373"}
-                ],
-                "date": "0.0"
-            },
-            {
-                "products": [
-                    {"name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g", "id": "5902802802576"},
-                    {"name": "Pistachio Delight – Carte d’Or", "id": "8711327672499"},
-                    {"name": "Beef Jerky – Tarczyński", "id": "5908230536007"},
-                    {"name": "Milk chocolate-covered banana – Biedronka – 180 g", "id": "5907554477454"},
-                    {"name": "Popcorn – 100 g", "id": "3577060000136"},
-                    {"name": "Tost pełnoziarnisty – Auchan – 500 g", "id": "5904215134251"}
-                ],
-                "date": "15.0"
-            },
-            {
-                "products": [
-                    {"name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g", "id": "5902802802576"},
-                    {"name": "Beef Jerky – Tarczyński", "id": "5908230536007"},
-                    {"name": "Pistachio Delight – Carte d’Or", "id": "8711327672499"},
-                    {"name": "Ser włoszczowski – Auchan", "id": "2228326001442"},
-                    {"name": "Almond Butter", "id": "5900617040053"}
-                ],
-                "date": "21.0"
-            },
-            {
-                "products": [
-                    {"name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g", "id": "5902802802576"},
-                    {"name": "Beef Jerky – Tarczyński", "id": "5908230536007"},
-                    {"name": "Pistachio Delight – Carte d’Or", "id": "8711327672499"},
-                    {"name": "Ser włoszczowski – Auchan", "id": "2228326001442"},
-                    {"name": "G – Bake Rolls,7 Days – 150g", "id": "5201360655373"}
-                ],
-                "date": "29.0"
-            }
-        ]
-    }
-
-    result = stage1(test_data)
-    print(json.dumps(result, indent=2, ensure_ascii=False))
-    result2 = stage2(result)
-    print(json.dumps(result2, indent=2, ensure_ascii=False))
-    result3 = stage3(result, result2, final_k=DEFAULT_FINAL_K)
-    print(json.dumps(result3, indent=2, ensure_ascii=False))
