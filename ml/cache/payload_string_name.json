@@ -1,0 +1,302 @@
+{
+  "history_baskets": [
+    {
+      "date": 28,
+      "products": [
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Ser włoszczowski – Auchan",
+          "id": "2228326001442"
+        },
+        {
+          "name": "Jabłka – La-Sad – 1,5 kg",
+          "id": "20355944"
+        },
+        {
+          "name": "Suszone jabłko o smaku ananasa – Crispy natural – 18g",
+          "id": "5900238965421"
+        },
+        {
+          "name": "Milk chocolate-covered banana – Biedronka – 180 g",
+          "id": "5907554477454"
+        }
+      ]
+    },
+    {
+      "date": 21,
+      "products": [
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Ser włoszczowski – Auchan",
+          "id": "2228326001442"
+        },
+        {
+          "name": "Almond Butter",
+          "id": "5900617040053"
+        }
+      ]
+    },
+    {
+      "date": 20,
+      "products": [
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        },
+        {
+          "name": "Ser włoszczowski – Auchan",
+          "id": "2228326001442"
+        },
+        {
+          "name": "Tost pełnoziarnisty – Auchan – 500 g",
+          "id": "5904215134251"
+        }
+      ]
+    },
+    {
+      "date": 14,
+      "products": [
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Ser włoszczowski – Auchan",
+          "id": "2228326001442"
+        },
+        {
+          "name": "Jogurt typu greckiego z jagodami 2,4% tłuszczu – Piątnica – 150 g",
+          "id": "5900531003400"
+        },
+        {
+          "name": "G – Bake Rolls,7 Days – 150g",
+          "id": "5201360655373"
+        },
+        {
+          "name": "Orzeszki arachidowe w czekoladzie. – Magnetic,Eurohansa – 500 g",
+          "id": "5900303003607"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Tost pełnoziarnisty – Auchan – 500 g",
+          "id": "5904215134251"
+        },
+        {
+          "name": "Popcorn – 100  g",
+          "id": "3577060000136"
+        },
+        {
+          "name": "Tudia lapte",
+          "id": "6424453000204"
+        },
+        {
+          "name": "Cola zero kofeiny 0.85 – Coca-Cola",
+          "id": "5449000314741"
+        }
+      ]
+    },
+    {
+      "date": 29,
+      "products": [
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Ser włoszczowski – Auchan",
+          "id": "2228326001442"
+        },
+        {
+          "name": "G – Bake Rolls,7 Days – 150g",
+          "id": "5201360655373"
+        }
+      ]
+    },
+    {
+      "date": 0,
+      "products": [
+        {
+          "name": "Cola zero kofeiny 0.85 – Coca-Cola",
+          "id": "5449000314741"
+        },
+        {
+          "name": "Ser włoszczowski – Auchan",
+          "id": "2228326001442"
+        },
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        }
+      ]
+    },
+    {
+      "date": 15,
+      "products": [
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        },
+        {
+          "name": "Milk chocolate-covered banana – Biedronka – 180 g",
+          "id": "5907554477454"
+        },
+        {
+          "name": "Popcorn – 100  g",
+          "id": "3577060000136"
+        },
+        {
+          "name": "Tost pełnoziarnisty – Auchan – 500 g",
+          "id": "5904215134251"
+        }
+      ]
+    },
+    {
+      "date": 0,
+      "products": [
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Almond Drink unsweetened – Milsa",
+          "id": "25026290"
+        },
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        },
+        {
+          "name": "Popcorn – 100  g",
+          "id": "3577060000136"
+        },
+        {
+          "name": "G – Bake Rolls,7 Days – 150g",
+          "id": "5201360655373"
+        }
+      ]
+    },
+    {
+      "date": 30,
+      "products": [
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Cola zero kofeiny 0.85 – Coca-Cola",
+          "id": "5449000314741"
+        },
+        {
+          "name": "Orzeszki arachidowe w czekoladzie. – Magnetic,Eurohansa – 500 g",
+          "id": "5900303003607"
+        },
+        {
+          "name": "Jogurt typu greckiego z jagodami 2,4% tłuszczu – Piątnica – 150 g",
+          "id": "5900531003400"
+        },
+        {
+          "name": "Ser włoszczowski – Auchan",
+          "id": "2228326001442"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Almond Drink unsweetened – Milsa",
+          "id": "25026290"
+        },
+        {
+          "name": "Tost pełnoziarnisty – Auchan – 500 g",
+          "id": "5904215134251"
+        },
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        }
+      ]
+    },
+    {
+      "date": 14,
+      "products": [
+        {
+          "name": "Beef Jerky – Tarczyński",
+          "id": "5908230536007"
+        },
+        {
+          "name": "Soda oczyszczona spożywcza bez antyzbrylaczy – 1000g",
+          "id": "5902802802576"
+        },
+        {
+          "name": "Pistachio Delight – Carte d’Or",
+          "id": "8711327672499"
+        },
+        {
+          "name": "Ser włoszczowski – Auchan",
+          "id": "2228326001442"
+        },
+        {
+          "name": "Cola zero kofeiny 0.85 – Coca-Cola",
+          "id": "5449000314741"
+        }
+      ]
+    }
+  ]
+}
