@@ -1,5 +1,6 @@
 import json
 import os
+import ast
 from collections import Counter
 from google import genai
 from dotenv import load_dotenv
@@ -15,6 +16,7 @@ PREVIOUSLY_BOUGHT_BOOST = 8   # bonus score za kupiony wcześniej produkt
 FREQ_BOOST_PER_BUY = 1.5        # dodatkowy bonus za każde kolejne kupienie   
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+DEFAULT_CSV_PATH = os.getenv("OPENFOODDATA_CSV", "/app/data/OpenFoodData.csv")
 
 def stage1(json_data):
     json_data = json.loads(json_data) if isinstance(json_data, str) else json_data
@@ -90,7 +92,7 @@ def stage1(json_data):
     return final_output
 
 
-def stage2(stage1_result, csv_path=r'C:\Users\konra\Desktop\vscode\projekt_zespolowy\smart-shopping-list-ML\prepare_data_for_model\OpenFoodData.csv'):
+def stage2(stage1_result, csv_path=DEFAULT_CSV_PATH):
     df = pd.read_csv(csv_path)
 
     def parse_categories(x):
