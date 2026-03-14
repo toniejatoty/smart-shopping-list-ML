@@ -89,7 +89,15 @@ def stage1(json_data):
         print(f"Błąd parsowania JSON: {e}")
         llm_output = {"categories": [], "keywords": [], "reasoning": "error"}
 
-    exclude_ids = [str(x) for x in json_data.get("exclude_ids", [])]
+    cache_state_input = json_data.get("cache_state", {})
+    if isinstance(cache_state_input, dict):
+        cache_state = {str(k): v for k, v in cache_state_input.items()}
+    else:
+        cache_state = {}
+
+    if not cache_state:
+        legacy_exclude_ids = [str(x) for x in json_data.get("exclude_ids", [])]
+        cache_state = {pid: None for pid in legacy_exclude_ids}
     cat_match_boost = float(json_data.get("cat_match_boost", CAT_MATCH_BOOST))
     cat_name_match_boost = float(json_data.get("cat_name_match_boost", CAT_NAME_MATCH_BOOST))
     kw_name_match_boost = float(json_data.get("kw_name_match_boost", KEYWORD_NAME_BOOST))
@@ -103,7 +111,7 @@ def stage1(json_data):
         "intent_keywords": llm_output.get("keywords", []),
         "user_bought_ids": [str(x) for x in user_bought_ids],
         "purchase_counts": dict(purchase_counts),
-        "exclude_ids": exclude_ids,
+        "cache_state": cache_state,
         "cat_match_boost": cat_match_boost,
         "cat_name_match_boost": cat_name_match_boost,
         "kw_name_match_boost": kw_name_match_boost,
@@ -115,13 +123,11 @@ def stage1(json_data):
 
     stage2_candidates = stage2(final_output)
     final_output["local_prods"] = stage2_candidates
-    stage2_candidate_ids = [str(p.get("id")) for p in stage2_candidates if p.get("id") is not None]
-
-    existing_exclude_ids = set(final_output["exclude_ids"])
-    for pid in stage2_candidate_ids:
-        if pid not in existing_exclude_ids:
-            final_output["exclude_ids"].append(pid)
-            existing_exclude_ids.add(pid)
+    for product in stage2_candidates:
+        pid = product.get("id")
+        if pid is None:
+            continue
+        final_output["cache_state"][str(pid)] = product.get("last_modified")
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     return final_output
@@ -140,6 +146,13 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
     if not required_columns.issubset(df.columns):
         return []
 
+    has_last_modified = "Last_modified" in df.columns
+
+    def normalize_nullable_value(value):
+        if pd.isna(value):
+            return None
+        return value
+
     def parse_categories(x):
         try:
             return [cat.lower() for cat in ast.literal_eval(x)]
@@ -153,7 +166,14 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
     intent_keywords = [k.lower() for k in stage1_result.get("intent_keywords", [])]
     user_bought_ids = [str(x) for x in stage1_result.get("user_bought_ids", [])]
     purchase_counts = stage1_result.get("purchase_counts", {})
-    exclude_ids = {str(x) for x in stage1_result.get("exclude_ids", [])}
+    cache_state = stage1_result.get("cache_state", {})
+    if isinstance(cache_state, dict):
+        excluded_ids = {str(x) for x in cache_state.keys()}
+    else:
+        excluded_ids = set()
+
+    if not excluded_ids:
+        excluded_ids = {str(x) for x in stage1_result.get("exclude_ids", [])}
     cat_match_boost = float(stage1_result.get("cat_match_boost", CAT_MATCH_BOOST))
     cat_name_match_boost = float(stage1_result.get("cat_name_match_boost", CAT_NAME_MATCH_BOOST))
     kw_name_match_boost = float(stage1_result.get("kw_name_match_boost", KEYWORD_NAME_BOOST))
@@ -170,7 +190,7 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
         p_name = row['name_lower']
         p_cats = row['parsed_categories']
 
-        if p_id in exclude_ids:
+        if p_id in excluded_ids:
             continue
 
         for cat in intent_categories:
@@ -194,11 +214,16 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
             score += (count * freq_boost)
 
         if score > 0:
+            last_modified = None
+            if has_last_modified:
+                last_modified = normalize_nullable_value(row.get("Last_modified"))
+
             scores.append({
                 "id": p_id,
                 "name": row['Name'],
                 "score": score,
-                "categories": p_cats
+                "categories": p_cats,
+                "last_modified": last_modified
             })
 
     ranked_products = sorted(scores, key=lambda x: (-x['score'], x['id']))
