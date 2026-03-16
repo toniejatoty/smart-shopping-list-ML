@@ -14,7 +14,7 @@ import csv
 load_dotenv()
 
 GEMINI_MODEL = "gemma-3-27b-it"
-RATE_LIMIT_SECONDS = 15.0
+RATE_LIMIT_SECONDS = 1.0
 DEFAULT_CANDIDATES = 40   # ile kandydatów pobieramy z cache w etapie 2
 DEFAULT_FINAL_K = 10      # ile produktów zwraca finałowy ranking
 PREVIOUSLY_BOUGHT_BOOST = 8   # bonus score za kupiony wcześniej produkt
@@ -30,12 +30,22 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent
 CACHE_DIR = BASE_DIR / "cache"
 STAGE1_CACHE_PATH = CACHE_DIR / "stage1_output.json"
 
+
+def normalize_last_modified(value):
+    if value is None:
+        return "0"
+    text = str(value).strip()
+    if not text or text.lower() == "none":
+        return "0"
+    return text
+
 def stage1(json_data):
     json_data = json.loads(json_data) if isinstance(json_data, str) else json_data
     history_baskets = json_data.get("history_baskets", [])
     
     purchase_counts = Counter()
     purchase_name_counts = Counter()
+    history_products_by_id = {}
     user_bought_ids = []
     history_lines = []
     for i, basket in enumerate(history_baskets):
@@ -46,11 +56,32 @@ def stage1(json_data):
         for p in products:
             p_id = p['id']
             p_name = str(p['name'])
+            p_categories = p.get("categories", [])
+            if not isinstance(p_categories, list):
+                p_categories = [str(p_categories)] if p_categories else []
+            p_categories = [str(cat).strip() for cat in p_categories if str(cat).strip()]
             
             purchase_counts[str(p_id)] += 1
             purchase_name_counts[p_name] += 1
             if p_id not in user_bought_ids:
                 user_bought_ids.append(p_id)
+
+            p_id_str = str(p_id)
+            existing_product = history_products_by_id.get(p_id_str)
+            if existing_product is None:
+                history_products_by_id[p_id_str] = {
+                    "id": p_id_str,
+                    "name": p_name,
+                    "categories": p_categories,
+                }
+            else:
+                if not existing_product.get("name") and p_name:
+                    existing_product["name"] = p_name
+                existing_categories = set(existing_product.get("categories", []))
+                for cat in p_categories:
+                    if cat not in existing_categories:
+                        existing_product.setdefault("categories", []).append(cat)
+                        existing_categories.add(cat)
             
             prod_names.append(p_name)
         
@@ -95,13 +126,13 @@ def stage1(json_data):
 
     cache_state_input = json_data.get("cache_state", {})
     if isinstance(cache_state_input, dict):
-        cache_state = {str(k): v for k, v in cache_state_input.items()}
+        cache_state = {str(k): normalize_last_modified(v) for k, v in cache_state_input.items()}
     else:
         cache_state = {}
 
     if not cache_state:
         legacy_exclude_ids = [str(x) for x in json_data.get("exclude_ids", [])]
-        cache_state = {pid: None for pid in legacy_exclude_ids}
+        cache_state = {pid: "0" for pid in legacy_exclude_ids}
     cat_match_boost = float(json_data.get("cat_match_boost", CAT_MATCH_BOOST))
     cat_name_match_boost = float(json_data.get("cat_name_match_boost", CAT_NAME_MATCH_BOOST))
     kw_name_match_boost = float(json_data.get("kw_name_match_boost", KEYWORD_NAME_BOOST))
@@ -114,6 +145,7 @@ def stage1(json_data):
         "intent_categories": llm_output.get("categories", []),
         "intent_keywords": llm_output.get("keywords", []),
         "user_bought_ids": [str(x) for x in user_bought_ids],
+        "history_products": list(history_products_by_id.values()),
         "purchase_counts": dict(purchase_counts),
         "cache_state": cache_state,
         "cat_match_boost": cat_match_boost,
@@ -131,7 +163,7 @@ def stage1(json_data):
         pid = product.get("id")
         if pid is None:
             continue
-        final_output["cache_state"][str(pid)] = product.get("last_modified")
+        final_output["cache_state"][str(pid)] = normalize_last_modified(product.get("last_modified"))
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     return final_output
@@ -154,17 +186,62 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
 
     def normalize_nullable_value(value):
         if pd.isna(value):
-            return None
-        return value
+            return "0"
+        return normalize_last_modified(value)
 
     def parse_categories(x):
-        try:
-            return [cat.lower() for cat in ast.literal_eval(x)]
-        except:
+        if isinstance(x, list):
+            return [str(cat).strip().lower() for cat in x if str(cat).strip()]
+        if pd.isna(x):
             return []
+        text = str(x).strip()
+        if not text:
+            return []
+        try:
+            parsed = ast.literal_eval(text)
+            if isinstance(parsed, list):
+                return [str(cat).strip().lower() for cat in parsed if str(cat).strip()]
+        except Exception:
+            pass
+        if "|" in text:
+            return [part.strip().lower() for part in text.split("|") if part.strip()]
+        return [text.lower()]
 
-    df['parsed_categories'] = df['Categories'].apply(parse_categories)
-    df['name_lower'] = df['Name'].fillna('').str.lower()
+    history_products = stage1_result.get("history_products", [])
+    history_rows = []
+    for product in history_products:
+        p_id = str(product.get("id", "")).strip()
+        if not p_id:
+            continue
+        p_name = str(product.get("name", "")).strip()
+        p_categories = product.get("categories", [])
+        if not isinstance(p_categories, list):
+            p_categories = [str(p_categories)] if p_categories else []
+        p_categories = [str(cat).strip() for cat in p_categories if str(cat).strip()]
+        history_rows.append({
+            "Id": p_id,
+            "Name": p_name,
+            "Categories": " | ".join(p_categories),
+            "Last_modified": "0",
+        })
+
+    history_df = pd.DataFrame(history_rows, columns=["Id", "Name", "Categories", "Last_modified"])
+    cache_df = df.copy()
+    if "Last_modified" not in cache_df.columns:
+        cache_df["Last_modified"] = "0"
+
+    merged_catalog_df = pd.concat(
+        [cache_df[["Id", "Name", "Categories", "Last_modified"]], history_df],
+        ignore_index=True,
+    )
+
+    merged_catalog_df["Id"] = merged_catalog_df["Id"].astype(str)
+    merged_catalog_df["Name"] = merged_catalog_df["Name"].fillna("").astype(str)
+    merged_catalog_df["Categories"] = merged_catalog_df["Categories"].fillna("").astype(str)
+    merged_catalog_df = merged_catalog_df.drop_duplicates(subset=["Id"], keep="first")
+
+    merged_catalog_df['parsed_categories'] = merged_catalog_df['Categories'].apply(parse_categories)
+    merged_catalog_df['name_lower'] = merged_catalog_df['Name'].fillna('').str.lower()
     
     intent_categories = [c.lower() for c in stage1_result.get("intent_categories", [])]
     intent_keywords = [k.lower() for k in stage1_result.get("intent_keywords", [])]
@@ -188,7 +265,7 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
 
     scores = []
 
-    for _, row in df.iterrows():
+    for _, row in merged_catalog_df.iterrows():
         score = 0.0
         p_id = str(row['Id'])
         p_name = row['name_lower']
@@ -218,7 +295,7 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
             score += (count * freq_boost)
 
         if score > 0:
-            last_modified = None
+            last_modified = "0"
             if has_last_modified:
                 last_modified = normalize_nullable_value(row.get("Last_modified"))
 
@@ -257,7 +334,7 @@ def make_cache(products_json, cache_path):
             "Id": product_id,
             "Name": product.get("name", ""),
             "Categories": " | ".join(product.get("categories", [])),
-            "Last_modified": str(product.get("last_modified", "")),
+            "Last_modified": normalize_last_modified(product.get("last_modified")),
         }
 
         existing_row = rows_by_id.get(product_id)
@@ -293,12 +370,9 @@ def stage3(stage2_candidates, history_list, final_k=10):
             
             prod_names.append(p_name)
         
-        history_lines.append(f"  Koszyk {i+1} (+{days} dni): {', '.join(prod_names)}")
+        history_lines.append(f"  Koszyk {i+1} (+{days} dni od poprzednich zakupów): {', '.join(prod_names)}")
 
     history_str = "\n".join(history_lines)
-
-
-
 
     prompt = (
         "Jesteś inteligentnym asystentem zakupowym.\n\n"
