@@ -25,7 +25,6 @@ KEYWORD_NAME_BOOST = 2.0              # bonus za dopasowanie słowa kluczowego w
 KEYWORD_CAT_BOOST = 1.0               # bonus za dopasowanie słowa kluczowego w kategorii
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-DEFAULT_CSV_PATH = os.getenv("OPENFOODDATA_CSV", "/app/data/OpenFoodData.csv")
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 CACHE_DIR = BASE_DIR / "cache"
@@ -55,7 +54,7 @@ def stage1(json_data):
             
             prod_names.append(p_name)
         
-        history_lines.append(f"  Koszyk {i+1} (+{days} dni): {', '.join(prod_names)}")
+        history_lines.append(f"  Koszyk {i+1} (+{days} dni od poprzednich zakupów: {', '.join(prod_names)}")
 
     history_str = "\n".join(history_lines)
 
@@ -271,9 +270,6 @@ def make_cache(products_json, cache_path):
         writer.writeheader()
         writer.writerows(rows_by_id.values())
             
-BASE_DIR = pathlib.Path(__file__).resolve().parent
-CACHE_DIR = BASE_DIR / "cache"
-SAMPLE_JSON_PATH = BASE_DIR / "sample_json.json"
 
 def stage3(stage2_candidates, history_list, final_k=10):
     make_cache(stage2_candidates, CACHE_DIR / "cached_products.csv")
