@@ -1,0 +1,14 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: shopping-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - ml/.env
+    environment:
+      - OPENFOODDATA_CSV=/app/data/OpenFoodData.csv
+    volumes:
+      - ./ml/cache:/app/ml/cache

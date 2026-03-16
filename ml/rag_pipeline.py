@@ -14,7 +14,7 @@ import csv
 load_dotenv()
 
 GEMINI_MODEL = "gemma-3-27b-it"
-RATE_LIMIT_SECONDS = 15.0
+RATE_LIMIT_SECONDS = 2.0
 DEFAULT_CANDIDATES = 40   # ile kandydatów pobieramy z cache w etapie 2
 DEFAULT_FINAL_K = 10      # ile produktów zwraca finałowy ranking
 PREVIOUSLY_BOUGHT_BOOST = 8   # bonus score za kupiony wcześniej produkt
