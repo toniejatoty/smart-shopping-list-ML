@@ -349,7 +349,34 @@ def make_cache(products_json, cache_path):
             
 
 def stage3(stage2_candidates, history_list, final_k=10):
-    make_cache(stage2_candidates, CACHE_DIR / "cached_products.csv")
+    candidates_for_cache = []
+    skipped_for_cache = []
+
+    for p in stage2_candidates:
+        pid = str(p.get("id", "")).strip()
+        lm = normalize_last_modified(p.get("last_modified"))
+
+        if not pid:
+            skipped_for_cache.append((p, "brak id"))
+            continue
+
+        if lm == "0":
+            skipped_for_cache.append((p, "last_modified=0 (produkt prywatny użytkownika)"))
+            continue
+
+        candidates_for_cache.append(p)
+
+    print(f"[stage3] cache IN: {len(candidates_for_cache)} / {len(stage2_candidates)}")
+    if skipped_for_cache:
+        print(f"[stage3] cache OUT: {len(skipped_for_cache)}")
+        for i, (p, reason) in enumerate(skipped_for_cache, 1):
+            print(
+                f"[stage3][cache_out][{i:02d}] "
+                f"id={p.get('id')} | name={p.get('name')} | "
+                f"last_modified={normalize_last_modified(p.get('last_modified'))} | reason={reason}"
+            )
+
+    make_cache(candidates_for_cache, CACHE_DIR / "cached_products.csv")
 
     new_candidates = [p for p in stage2_candidates]
     
