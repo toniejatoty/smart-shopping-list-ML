@@ -8,10 +8,13 @@ import pandas as pd
 import pathlib
 import time
 import ast
+from pathlib import Path
+import pathlib
+import csv
 load_dotenv()
 
 GEMINI_MODEL = "gemma-3-27b-it"
-RATE_LIMIT_SECONDS = 2.0
+RATE_LIMIT_SECONDS = 15.0
 DEFAULT_CANDIDATES = 40   # ile kandydatów pobieramy z cache w etapie 2
 DEFAULT_FINAL_K = 10      # ile produktów zwraca finałowy ranking
 PREVIOUSLY_BOUGHT_BOOST = 8   # bonus score za kupiony wcześniej produkt
@@ -231,24 +234,80 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
     ranked_products = sorted(scores, key=lambda x: (-x['score'], x['id']))
     return ranked_products[:n_candidates]
 
-def stage3(stage2_candidates, final_k=10):
-    with open(STAGE1_CACHE_PATH, 'r') as f:
-        stage1_result = json.load(f)
-    counts = Counter(stage1_result['purchase_counts'])
-    top_frequent_names = [name for name, count in counts.most_common(15)]
-    
-    cache_lines = [f"- {name}" for name in top_frequent_names]
-    cache_str = "\n".join(cache_lines)
 
-    new_candidates = [p for p in stage2_candidates if p["name"] not in top_frequent_names]
+def make_cache(products_json, cache_path):
+    HEADERS = ["Id", "Name", "Categories", "Last_modified"]
+    cache_path = Path(cache_path)
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+
+    rows_by_id = {}
+
+    if cache_path.exists():
+        with open(cache_path, "r", newline="", encoding="utf-8") as csv_file:
+            for row in csv.DictReader(csv_file):
+                product_id = row.get("Id")
+                if product_id:
+                    rows_by_id[product_id] = row
+
+    for product in products_json:
+        product_id = str(product.get("id", ""))
+        if not product_id:
+            continue
+
+        row = {
+            "Id": product_id,
+            "Name": product.get("name", ""),
+            "Categories": " | ".join(product.get("categories", [])),
+            "Last_modified": str(product.get("last_modified", "")),
+        }
+
+        existing_row = rows_by_id.get(product_id)
+        if existing_row is None or row["Last_modified"] > existing_row.get("Last_modified", ""):
+            print(f"Updating cache for product ID {product_id}")
+            rows_by_id[product_id] = row
+
+    with open(cache_path, "w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=HEADERS)
+        writer.writeheader()
+        writer.writerows(rows_by_id.values())
+            
+BASE_DIR = pathlib.Path(__file__).resolve().parent
+CACHE_DIR = BASE_DIR / "cache"
+SAMPLE_JSON_PATH = BASE_DIR / "sample_json.json"
+
+def stage3(stage2_candidates, history_list, final_k=10):
+    make_cache(stage2_candidates, CACHE_DIR / "cached_products.csv")
+
+    new_candidates = [p for p in stage2_candidates]
     
-    new_lines = [f"- {p['name']} (Kategorie: {p['categories']})" for p in new_candidates[:20]]
+    new_lines = [f"- {p['name']} (Kategorie: {p['categories']})" for p in new_candidates]
     new_str = "\n".join(new_lines)
+
+    history_list = json.loads(history_list) if isinstance(history_list, str) else history_list
+    history_baskets = history_list.get("history_baskets", [])
+    
+    history_lines = []
+    for i, basket in enumerate(history_baskets):
+        products = basket.get("products", [])
+        days = basket.get("date", "0")
+        
+        prod_names = []
+        for p in products:
+            p_name = str(p['name'])
+            
+            prod_names.append(p_name)
+        
+        history_lines.append(f"  Koszyk {i+1} (+{days} dni): {', '.join(prod_names)}")
+
+    history_str = "\n".join(history_lines)
+
+
+
 
     prompt = (
         "Jesteś inteligentnym asystentem zakupowym.\n\n"
-        "PRODUKTY KUPOWANE REGULARNIE (Priorytet):\n"
-        f"{cache_str}\n\n"
+        "Tu masz hisotrie użytkownika (od najstarszego do najnowszego):\n\n"
+        f"{history_str}\n\n"
         "NOWE PROPOZYCJE (Uzupełnienie):\n"
         f"{new_str}\n\n"
         f"ZADANIE: Wybierz dokładnie {final_k} produktów do nowego koszyka.\n"

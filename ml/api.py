@@ -10,8 +10,8 @@ def stage1_api(input =Body(...)):
     return result
 
 @app.post("/stage3")
-def stage3_api(stage2_res=Body(...)):
-    stage3_res = stage3(stage2_res)
+def stage3_api(stage2_candidates=Body(...), history_list = Body(...)):
+    stage3_res = stage3(stage2_candidates, history_list)
     return stage3_res
 
 if __name__ == "__main__":
