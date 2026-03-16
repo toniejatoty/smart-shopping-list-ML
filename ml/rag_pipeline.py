@@ -173,16 +173,43 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
     try:
         df = pd.read_csv(csv_path)
     except (FileNotFoundError, pd.errors.EmptyDataError, pd.errors.ParserError):
-        return []
+        df = pd.DataFrame(columns=["Id", "Name", "Categories", "Last_modified"])
 
-    if df.empty:
-        return []
+    history_products = stage1_result.get("history_products", [])
+    history_rows = []
+    for product in history_products:
+        p_id = str(product.get("id", "")).strip()
+        if not p_id:
+            continue
+        p_name = str(product.get("name", "")).strip()
+        p_categories = product.get("categories", [])
+        if not isinstance(p_categories, list):
+            p_categories = [str(p_categories)] if p_categories else []
+        p_categories = [str(cat).strip() for cat in p_categories if str(cat).strip()]
+        history_rows.append({
+            "Id": p_id,
+            "Name": p_name,
+            "Categories": " | ".join(p_categories),
+            "Last_modified": "0",
+        })
 
-    required_columns = {"Id", "Name", "Categories"}
-    if not required_columns.issubset(df.columns):
-        return []
+    history_df = pd.DataFrame(history_rows, columns=["Id", "Name", "Categories", "Last_modified"])
 
-    has_last_modified = "Last_modified" in df.columns
+    cache_df = df.copy()
+    if "Last_modified" not in cache_df.columns:
+        cache_df["Last_modified"] = "0"
+
+    merged_catalog_df = pd.concat(
+        [cache_df[["Id", "Name", "Categories", "Last_modified"]], history_df],
+        ignore_index=True,
+    )
+
+    merged_catalog_df["Id"] = merged_catalog_df["Id"].astype(str)
+    merged_catalog_df["Name"] = merged_catalog_df["Name"].fillna("").astype(str)
+    merged_catalog_df["Categories"] = merged_catalog_df["Categories"].fillna("").astype(str)
+    merged_catalog_df = merged_catalog_df.drop_duplicates(subset=["Id"], keep="first")
+
+    has_last_modified = True
 
     def normalize_nullable_value(value):
         if pd.isna(value):
@@ -206,39 +233,6 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
         if "|" in text:
             return [part.strip().lower() for part in text.split("|") if part.strip()]
         return [text.lower()]
-
-    history_products = stage1_result.get("history_products", [])
-    history_rows = []
-    for product in history_products:
-        p_id = str(product.get("id", "")).strip()
-        if not p_id:
-            continue
-        p_name = str(product.get("name", "")).strip()
-        p_categories = product.get("categories", [])
-        if not isinstance(p_categories, list):
-            p_categories = [str(p_categories)] if p_categories else []
-        p_categories = [str(cat).strip() for cat in p_categories if str(cat).strip()]
-        history_rows.append({
-            "Id": p_id,
-            "Name": p_name,
-            "Categories": " | ".join(p_categories),
-            "Last_modified": "0",
-        })
-
-    history_df = pd.DataFrame(history_rows, columns=["Id", "Name", "Categories", "Last_modified"])
-    cache_df = df.copy()
-    if "Last_modified" not in cache_df.columns:
-        cache_df["Last_modified"] = "0"
-
-    merged_catalog_df = pd.concat(
-        [cache_df[["Id", "Name", "Categories", "Last_modified"]], history_df],
-        ignore_index=True,
-    )
-
-    merged_catalog_df["Id"] = merged_catalog_df["Id"].astype(str)
-    merged_catalog_df["Name"] = merged_catalog_df["Name"].fillna("").astype(str)
-    merged_catalog_df["Categories"] = merged_catalog_df["Categories"].fillna("").astype(str)
-    merged_catalog_df = merged_catalog_df.drop_duplicates(subset=["Id"], keep="first")
 
     merged_catalog_df['parsed_categories'] = merged_catalog_df['Categories'].apply(parse_categories)
     merged_catalog_df['name_lower'] = merged_catalog_df['Name'].fillna('').str.lower()
@@ -270,9 +264,6 @@ def stage2(stage1_result, csv_path=pathlib.Path(__file__).resolve().parent / "ca
         p_id = str(row['Id'])
         p_name = row['name_lower']
         p_cats = row['parsed_categories']
-
-        if p_id in excluded_ids:
-            continue
 
         for cat in intent_categories:
             if cat in p_cats:
