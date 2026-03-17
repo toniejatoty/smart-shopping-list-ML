@@ -10,7 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ml/api.py /app/ml/api.py
 COPY ml/rag_pipeline.py /app/ml/rag_pipeline.py
-COPY prepare_data_for_model/OpenFoodData.csv /app/data/OpenFoodData.csv
 
 WORKDIR /app/ml
 RUN mkdir -p cache
