@@ -1,0 +1,6 @@
+*
+!ml/api.py
+!ml/rag_pipeline.py
+!requirements.txt
+!ml/.env
+!   prepare_data_for_model/OpenFoodData.csv
