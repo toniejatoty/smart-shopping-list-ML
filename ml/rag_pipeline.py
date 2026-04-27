@@ -13,7 +13,8 @@ import pathlib
 import csv
 load_dotenv()
 
-GEMINI_MODEL = "gemma-3-27b-it"
+#GEMINI_MODEL = "gemma-3-27b-it"
+GEMINI_MODEL = "models/gemma-4-31b-it"
 RATE_LIMIT_SECONDS = 0
 DEFAULT_CANDIDATES = 40   # ile kandydatów pobieramy z cache w etapie 2
 DEFAULT_FINAL_K = 10      # ile produktów zwraca finałowy ranking
